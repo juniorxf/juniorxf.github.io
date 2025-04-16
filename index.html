@@ -375,13 +375,7 @@
     // Configuração do axios
     const axiosInstance = axios.create({
       baseURL: 'https://app.help7.com.br',
-      withCredentials: true, // Importante para cookies
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET,PUT,POST,PATCH,OPTIONS'
-      }
+      withCredentials: true // Importante para cookies
     });
 
     // Função para fazer login e armazenar token
