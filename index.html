@@ -56,19 +56,16 @@
       margin: -58px -5px -5px -5px;
     }
 
-    .messages {
+    /* .messages {
       flex-grow: 1;
       overflow-y: auto;
       display: flex;
-      /* Adiciona display flex */
       flex-direction: column;
-      /* Organiza as mensagens em coluna */
       align-items: flex-end;
-      /* Alinha as mensagens à direita */
     }
 
     .message {
-      background: #dcf8c6;
+      background: #d8fdd2;
       border-radius: 7px;
       padding: 8px 35px 8px 8px;
       margin-bottom: 10px;
@@ -76,22 +73,82 @@
       width: fit-content;
       position: relative;
       display: inline-block;
+    } */
+
+    .messages {
+      flex-grow: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      /* Reduz espaço entre mensagens */
+    }
+
+    /* Estilo base para todas as mensagens */
+    .message {
+      border-radius: 7px;
+      padding: 8px 35px 8px 8px;
+      margin-bottom: 5px;
+      /* Reduz margem entre mensagens */
+      max-width: 80%;
+      width: fit-content;
+      position: relative;
+    }
+
+    /* Estilo específico para mensagens enviadas (balão verde) */
+    .message.sent {
+      background: #d8fdd2;
+      align-self: flex-end;
+    }
+
+    /* Estilo específico para mensagens recebidas (balão branco) */
+    .message.received {
+      background: #ffffff;
+      align-self: flex-start;
+    }
+
+    /* Setinha para primeira mensagem enviada */
+    .message.sent.first::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -8px;
+      /* Alterado de 8px para -8px */
+      width: 0;
+      height: 0;
+      border-left: 8px solid #d8fdd2;
+      /* Alterado de border-right para border-left */
+      border-top: 8px solid transparent;
+    }
+
+    /* Setinha para primeira mensagem recebida */
+    .message.received.first::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -8px;
+      width: 0;
+      height: 0;
+      border-right: 8px solid #ffffff;
+      border-top: 8px solid transparent;
     }
 
     .message span {
       word-wrap: break-word;
       white-space: pre-wrap;
       display: block;
+      font-size: 14px;
       /* Garante que o texto ocupe a largura correta */
     }
 
-    .message-time {
-      font-size: 11px;
+    /* .message-time { */
+    .message span.message-time {
+      font-size: 10px;
       color: #667781;
       position: absolute;
-      bottom: 8px;
+      bottom: 4px;
       /* Ajusta distância da base */
-      right: 4px;
+      right: 6px;
       /* Ajusta distância da direita */
       line-height: 1;
     }
@@ -108,10 +165,11 @@
       border: none;
       padding: 10px;
       outline: none;
+      font-size: 15px;
     }
 
     .input-area button {
-      background-color: #25d366;
+      /* background-color: #25d366; */
       border: none;
       border-radius: 50%;
       color: white;
@@ -121,6 +179,13 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
+    }
+
+    .send-icon {
+      width: 55px;
+      height: 55px;
+      /* filter: brightness(0) invert(1); */
+      /* Faz o ícone ficar branco */
     }
 
     .whatsapp-header {
@@ -289,12 +354,22 @@
           </div>
         </div>
       </div>
-      <div class="messages" id="messages">
+      <!-- <div class="messages" id="messages">
         <div class="message">Olá! Como posso te ajudar?</div>
+      </div> -->
+      <!-- Substitua a div de mensagem inicial por: -->
+      <div class="messages" id="messages">
+        <div class="message received first">
+          <span>Olá! Como posso te ajudar?</span>
+          <span class="message-time">12:00</span>
+        </div>
       </div>
       <div class="input-area">
         <input type="text" id="userInput" placeholder="Mensagem">
-        <button onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button>
+        <!-- <button onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button> -->
+        <button onclick="sendMessage()">
+          <img src="./send.svg" alt="Send message" class="send-icon">
+        </button>
       </div>
     </div>
     <div class="android-navigation">
@@ -323,11 +398,24 @@
     //   const messages = document.getElementById('messages');
 
     //   if (input.value.trim() !== '') {
-    //     const newMsg = document.createElement('div');
-    //     newMsg.classList.add('message');
-    //     newMsg.textContent = input.value;
+    //     const now = new Date();
+    //     const hours = now.getHours().toString().padStart(2, '0');
+    //     const minutes = now.getMinutes().toString().padStart(2, '0');
 
-    //     messages.appendChild(newMsg);
+    //     const messageContainer = document.createElement('div');
+    //     messageContainer.classList.add('message');
+
+    //     const messageText = document.createElement('span');
+    //     messageText.textContent = input.value;
+
+    //     const messageTime = document.createElement('span');
+    //     messageTime.classList.add('message-time');
+    //     messageTime.textContent = `${hours}:${minutes}`;
+
+    //     messageContainer.appendChild(messageText);
+    //     messageContainer.appendChild(messageTime);
+
+    //     messages.appendChild(messageContainer);
     //     messages.scrollTop = messages.scrollHeight;
 
     //     input.value = '';
@@ -344,7 +432,12 @@
         const minutes = now.getMinutes().toString().padStart(2, '0');
 
         const messageContainer = document.createElement('div');
-        messageContainer.classList.add('message');
+        messageContainer.classList.add('message', 'sent');
+
+        // Adiciona classe 'first' se for a primeira mensagem enviada
+        if (!document.querySelector('.message.sent')) {
+          messageContainer.classList.add('first');
+        }
 
         const messageText = document.createElement('span');
         messageText.textContent = input.value;
