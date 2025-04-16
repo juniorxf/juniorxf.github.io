@@ -318,254 +318,324 @@
 <body>
   <div class="phone-container">
     <div class="whatsapp-screen">
-      <div class="whatsapp-header">
-        <div class="status-bar">
-          <div class="time"></div>
-          <div class="system-icons">
-            <i class="fas fa-wifi"></i>
-            <i class="fas fa-battery-three-quarters"></i>
-          </div>
-        </div>
-        <div class="chat-header">
-          <div class="contact-info">
-            <div class="avatar">
-              <img src="https://github.com/juniorxf.png" alt="Profile">
+
+      <!-- Tela de login -->
+      <div id="loginScreen" style="padding:20px; text-align:center; margin-top:50px;">
+        <h3 style="color:#075E54;">Login</h3>
+        <input id="username" placeholder="Usuário"
+          style="width:90%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #ddd;">
+        <input type="password" id="password" placeholder="Senha"
+          style="width:90%; padding:10px; margin-bottom:20px; border-radius:5px; border:1px solid #ddd;">
+        <button onclick="handleLogin()"
+          style="padding:10px 20px; background:#25D366; color:#fff; border:none; border-radius:20px; cursor:pointer;">Entrar</button>
+      </div>
+
+      <!-- Tela WhatsApp (inicialmente oculta) -->
+      <div id="chatScreen" style="display:none; flex-direction:column; height:100%;">
+
+        <div class="whatsapp-header">
+          <div class="status-bar">
+            <div class="time"></div>
+            <div class="system-icons">
+              <i class="fas fa-wifi"></i>
+              <i class="fas fa-battery-three-quarters"></i>
             </div>
-            <div class="contact-details">
-              <div class="contact-name">José Freitas</div>
-              <div class="online-status">online</div>
-            </div>
           </div>
-          <div class="chat-actions">
-            <!-- <i class="fas fa-video"></i>
+          <div class="chat-header">
+            <div class="contact-info">
+              <div class="avatar">
+                <img src="https://github.com/juniorxf.png" alt="Profile">
+              </div>
+              <div class="contact-details">
+                <div class="contact-name">José Freitas</div>
+                <div class="online-status">online</div>
+              </div>
+            </div>
+            <div class="chat-actions">
+              <!-- <i class="fas fa-video"></i>
             <i class="fas fa-phone"></i> -->
-            <!-- <i class="fas fa-ellipsis-v"></i> -->
-            <img src="./video.svg" alt="Video call" class="action-icon video-icon">
-            <img src="./phone.svg" alt="Phone call" class="action-icon">
-            <img src="./ellipsis.svg" alt="Ellipsis call" class="action-icon">
+              <!-- <i class="fas fa-ellipsis-v"></i> -->
+              <img src="./video.svg" alt="Video call" class="action-icon video-icon">
+              <img src="./phone.svg" alt="Phone call" class="action-icon">
+              <img src="./ellipsis.svg" alt="Ellipsis call" class="action-icon">
+            </div>
           </div>
         </div>
-      </div>
-      <div class="messages" id="messages">
-        <div class="message received first">
-          <span>Olá! Como posso te ajudar?</span>
-          <!-- <span class="message-time">12:00</span> -->
-          <span class="message-time"></span>
+        <div class="messages" id="messages">
+          <div class="message received first">
+            <span>Olá! Como posso te ajudar?</span>
+            <!-- <span class="message-time">12:00</span> -->
+            <span class="message-time"></span>
+          </div>
+        </div>
+        <div class="input-area">
+          <input type="text" id="userInput" placeholder="Mensagem">
+          <!-- <button onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button> -->
+          <button onclick="sendMessage()">
+            <img src="./send.svg" alt="Send message" class="send-icon">
+          </button>
         </div>
       </div>
-      <div class="input-area">
-        <input type="text" id="userInput" placeholder="Mensagem">
-        <!-- <button onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button> -->
-        <button onclick="sendMessage()">
-          <img src="./send.svg" alt="Send message" class="send-icon">
-        </button>
+      <div class="android-navigation">
+        <div class="nav-button"><i class="fas fa-square"></i></div>
+        <!-- <div class="nav-button"><i class="far fa-circle"></i></div> -->
+        <div class="nav-button">
+          <img src="./circle.svg" alt="Circle" class="nav-icon">
+        </div>
+        <div class="nav-button"><i class="fas fa-caret-left"></i></div>
       </div>
     </div>
-    <div class="android-navigation">
-      <div class="nav-button"><i class="fas fa-square"></i></div>
-      <!-- <div class="nav-button"><i class="far fa-circle"></i></div> -->
-      <div class="nav-button">
-        <img src="./circle.svg" alt="Circle" class="nav-icon">
-      </div>
-      <div class="nav-button"><i class="fas fa-caret-left"></i></div>
-    </div>
-  </div>
 
-  <script>
-    // Configuração do axios
-    const axiosInstance = axios.create({
-      baseURL: 'https://app.help7.com.br',
-      withCredentials: true // Importante para cookies
-    });
+    <script>
+      // Configuração do axios
+      const axiosInstance = axios.create({
+        baseURL: 'https://app.help7.com.br',
+        withCredentials: true // Importante para cookies
+      });
 
-    // Função para fazer login e armazenar token
-    async function doLogin() {
-      try {
-        const response = await axiosInstance.post('/auth/login', {
-          username: 'seu_usuario',
-          password: 'sua_senha'
-        });
+      async function handleLogin() {
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
 
-        if (response.status === 200) {
-          // Armazena o token no cookie
-          document.cookie = `authToken=${response.data.token}; path=/; secure; max-age=86400`;
-          return true;
+        if (!username || !password) {
+          alert('Por favor, preencha todos os campos.');
+          return;
         }
-      } catch (error) {
-        console.error('Erro no login:', error);
-        return false;
+
+        try {
+          const response = await axiosInstance.post('/auth/login', { username, password });
+
+          if (response.status === 200 && response.data.token) {
+            document.cookie = `authToken=${response.data.token}; path=/; secure; max-age=86400`;
+
+            // Muda para a tela de chat
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('chatScreen').style.display = 'flex';
+
+            setInitialMessageTime();
+          } else {
+            alert('Usuário ou senha incorretos.');
+          }
+
+        } catch (error) {
+          console.error('Erro no login:', error);
+          alert('Falha na conexão com o servidor.');
+        }
       }
-    }
 
-    // Função para enviar mensagem via WhatsApp
-    async function sendWhatsAppMessage(messageText) {
-      try {
-        // Obtém o token do cookie
-        const token = document.cookie
-          .split('; ')
-          .find(row => row.startsWith('authToken='))
-          ?.split('=')[1];
 
-        if (!token) {
-          throw new Error('Token não encontrado');
-        }
+      // // Função para fazer login e armazenar token
+      // async function doLogin() {
+      //   try {
+      //     const response = await axiosInstance.post('/auth/login', {
+      //       username: 'seu_usuario',
+      //       password: 'sua_senha'
+      //     });
 
-        // Configura o header com o token
+      //     if (response.status === 200) {
+      //       // Armazena o token no cookie
+      //       document.cookie = `authToken=${response.data.token}; path=/; secure; max-age=86400`;
+      //       return true;
+      //     }
+      //   } catch (error) {
+      //     console.error('Erro no login:', error);
+      //     return false;
+      //   }
+      // }
+
+      // Função para enviar mensagem via WhatsApp
+      // async function sendWhatsAppMessage(messageText) {
+      //   try {
+      //     // Obtém o token do cookie
+      //     const token = document.cookie
+      //       .split('; ')
+      //       .find(row => row.startsWith('authToken='))
+      //       ?.split('=')[1];
+
+      //     if (!token) {
+      //       throw new Error('Token não encontrado');
+      //     }
+
+      //     // Configura o header com o token
+      //     axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      //     const payload = {
+      //       sessionName: "corretor",
+      //       contacts: [{
+      //         "number": "556299957980",
+      //         "nome_inicial": "José",
+      //         "nome_completo": "José Freitas"
+      //       }],
+      //       message: messageText
+      //     };
+
+      //     const result = await axiosInstance.post('/api/send-pers-message', payload);
+      //     return result.status === 200;
+      //   } catch (error) {
+      //     console.error("Erro ao enviar mensagem:", error);
+      //     return false;
+      //   }
+      // }
+
+      async function sendWhatsAppMessage(messageText) {
+        const token = document.cookie.split('; ').find(row => row.startsWith('authToken='))?.split('=')[1];
+        if (!token) return false;
+
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
         const payload = {
           sessionName: "corretor",
-          contacts: [{
-            "number": "556299957980",
-            "nome_inicial": "José",
-            "nome_completo": "José Freitas"
-          }],
+          contacts: [{ number: "556299957980", nome_inicial: "José", nome_completo: "José Freitas" }],
           message: messageText
         };
 
-        const result = await axiosInstance.post('/api/send-pers-message', payload);
-        return result.status === 200;
-      } catch (error) {
-        console.error("Erro ao enviar mensagem:", error);
-        return false;
+        try {
+          const result = await axiosInstance.post('/api/send-pers-message', payload);
+          return result.status === 200;
+        } catch (error) {
+          console.error("Erro ao enviar mensagem:", error);
+          return false;
+        }
       }
-    }
 
-    function updateTime() {
-      const timeElement = document.querySelector('.time');
-      const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      timeElement.textContent = `${hours}:${minutes}`;
-    }
 
-    // Atualiza o horário a cada minuto
-    updateTime();
-    setInterval(updateTime, 60000);
 
-    // function sendMessage() {
-    //   const input = document.getElementById('userInput');
-    //   const messages = document.getElementById('messages');
+      function updateTime() {
+        const timeElement = document.querySelector('.time');
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        timeElement.textContent = `${hours}:${minutes}`;
+      }
 
-    //   if (input.value.trim() !== '') {
-    //     const now = new Date();
-    //     const hours = now.getHours().toString().padStart(2, '0');
-    //     const minutes = now.getMinutes().toString().padStart(2, '0');
+      // Atualiza o horário a cada minuto
+      updateTime();
+      setInterval(updateTime, 60000);
 
-    //     const messageContainer = document.createElement('div');
-    //     messageContainer.classList.add('message', 'sent');
+      // function sendMessage() {
+      //   const input = document.getElementById('userInput');
+      //   const messages = document.getElementById('messages');
 
-    //     // Adiciona classe 'first' se for a primeira mensagem enviada
-    //     if (!document.querySelector('.message.sent')) {
-    //       messageContainer.classList.add('first');
-    //     }
+      //   if (input.value.trim() !== '') {
+      //     const now = new Date();
+      //     const hours = now.getHours().toString().padStart(2, '0');
+      //     const minutes = now.getMinutes().toString().padStart(2, '0');
 
-    //     const messageText = document.createElement('span');
-    //     messageText.textContent = input.value;
+      //     const messageContainer = document.createElement('div');
+      //     messageContainer.classList.add('message', 'sent');
 
-    //     const messageTime = document.createElement('span');
-    //     messageTime.classList.add('message-time');
-    //     messageTime.textContent = `${hours}:${minutes}`;
+      //     // Adiciona classe 'first' se for a primeira mensagem enviada
+      //     if (!document.querySelector('.message.sent')) {
+      //       messageContainer.classList.add('first');
+      //     }
 
-    //     messageContainer.appendChild(messageText);
-    //     messageContainer.appendChild(messageTime);
+      //     const messageText = document.createElement('span');
+      //     messageText.textContent = input.value;
 
-    //     messages.appendChild(messageContainer);
-    //     messages.scrollTop = messages.scrollHeight;
+      //     const messageTime = document.createElement('span');
+      //     messageTime.classList.add('message-time');
+      //     messageTime.textContent = `${hours}:${minutes}`;
 
-    //     input.value = '';
-    //   }
-    // }
+      //     messageContainer.appendChild(messageText);
+      //     messageContainer.appendChild(messageTime);
 
-    // Modificar a função sendMessage existente
-    async function sendMessage() {
-      const input = document.getElementById('userInput');
-      const messages = document.getElementById('messages');
+      //     messages.appendChild(messageContainer);
+      //     messages.scrollTop = messages.scrollHeight;
 
-      if (input.value.trim() !== '') {
-        const messageText = input.value;
+      //     input.value = '';
+      //   }
+      // }
 
-        // Adiciona a mensagem na interface
+      // Modificar a função sendMessage existente
+      async function sendMessage() {
+        const input = document.getElementById('userInput');
+        const messages = document.getElementById('messages');
+
+        if (input.value.trim() !== '') {
+          const messageText = input.value;
+
+          // Adiciona a mensagem na interface
+          const now = new Date();
+          const hours = now.getHours().toString().padStart(2, '0');
+          const minutes = now.getMinutes().toString().padStart(2, '0');
+
+          const messageContainer = document.createElement('div');
+          messageContainer.classList.add('message', 'sent');
+
+          if (!document.querySelector('.message.sent')) {
+            messageContainer.classList.add('first');
+          }
+
+          // const messageText = document.createElement('span');
+          messageText = document.createElement('span');
+          messageText.textContent = input.value;
+
+          const messageTime = document.createElement('span');
+          messageTime.classList.add('message-time');
+          messageTime.textContent = `${hours}:${minutes}`;
+
+          messageContainer.appendChild(messageText);
+          messageContainer.appendChild(messageTime);
+          messages.appendChild(messageContainer);
+          messages.scrollTop = messages.scrollHeight;
+
+          // Envia a mensagem via WhatsApp
+          const sent = await sendWhatsAppMessage(messageText);
+          if (!sent) {
+            alert("Erro ao enviar mensagem via WhatsApp.");
+            // Se falhou o envio, tenta fazer login novamente
+            // const loggedIn = await doLogin();
+            // if (loggedIn) {
+            //   // Tenta enviar a mensagem novamente
+            //   await sendWhatsAppMessage(messageText);
+            // }
+          }
+
+          input.value = '';
+        }
+      }
+
+      function setInitialMessageTime() {
         const now = new Date();
         const hours = now.getHours().toString().padStart(2, '0');
         const minutes = now.getMinutes().toString().padStart(2, '0');
 
-        const messageContainer = document.createElement('div');
-        messageContainer.classList.add('message', 'sent');
-
-        if (!document.querySelector('.message.sent')) {
-          messageContainer.classList.add('first');
+        const initialMessageTime = document.querySelector('.message.received.first .message-time');
+        if (initialMessageTime) {
+          initialMessageTime.textContent = `${hours}:${minutes}`;
         }
+      }
 
-        // const messageText = document.createElement('span');
-        messageText = document.createElement('span');
-        messageText.textContent = input.value;
+      // // ENVIAR WHATSAPP
+      // const payload = {
+      //     sessionName: "corretor",
+      //     contacts: [{ "number": "556299957980", "nome_inicial": "José", "nome_completo": "José Freitas" }],
+      //     message: messageContent
+      //   };
 
-        const messageTime = document.createElement('span');
-        messageTime.classList.add('message-time');
-        messageTime.textContent = `${hours}:${minutes}`;
+      // try {
+      //     // Envia a requisição para o endpoint de envio da mensagem
+      //     const result = await axiosInstance.post('https://app.help7.com.br/api/send-pers-message', payload);
+      //   } catch (error) {
+      //     console.error("[Scheduler] Erro ao enviar mensagem:", error);
+      //     alert("Erro ao enviar mensagem.");
+      //   }
 
-        messageContainer.appendChild(messageText);
-        messageContainer.appendChild(messageTime);
-        messages.appendChild(messageContainer);
-        messages.scrollTop = messages.scrollHeight;
+      // Fazer login quando a página carregar
+      document.addEventListener('DOMContentLoaded', async () => {
+        // await doLogin();
+        setInitialMessageTime();
+      });
 
-        // Envia a mensagem via WhatsApp
-        const sent = await sendWhatsAppMessage(messageText);
-        if (!sent) {
-          // Se falhou o envio, tenta fazer login novamente
-          const loggedIn = await doLogin();
-          if (loggedIn) {
-            // Tenta enviar a mensagem novamente
-            await sendWhatsAppMessage(messageText);
-          }
+      // Chame a função quando a página carregar
+      // document.addEventListener('DOMContentLoaded', setInitialMessageTime);
+
+      document.getElementById('userInput').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+          sendMessage();
         }
-
-        input.value = '';
-      }
-    }
-
-    function setInitialMessageTime() {
-      const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-
-      const initialMessageTime = document.querySelector('.message.received.first .message-time');
-      if (initialMessageTime) {
-        initialMessageTime.textContent = `${hours}:${minutes}`;
-      }
-    }
-
-    // // ENVIAR WHATSAPP
-    // const payload = {
-    //     sessionName: "corretor",
-    //     contacts: [{ "number": "556299957980", "nome_inicial": "José", "nome_completo": "José Freitas" }],
-    //     message: messageContent
-    //   };
-
-    // try {
-    //     // Envia a requisição para o endpoint de envio da mensagem
-    //     const result = await axiosInstance.post('https://app.help7.com.br/api/send-pers-message', payload);
-    //   } catch (error) {
-    //     console.error("[Scheduler] Erro ao enviar mensagem:", error);
-    //     alert("Erro ao enviar mensagem.");
-    //   }
-
-    // Fazer login quando a página carregar
-    document.addEventListener('DOMContentLoaded', async () => {
-      await doLogin();
-      setInitialMessageTime();
-    });
-
-    // Chame a função quando a página carregar
-    // document.addEventListener('DOMContentLoaded', setInitialMessageTime);
-
-    document.getElementById('userInput').addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
-    });
-  </script>
+      });
+    </script>
 </body>
 
 </html>
