@@ -10,7 +10,6 @@
     body {
       font-family: 'Arial', sans-serif;
       background-color: #f9f9f9;
-      /* background-color: #ffffff; */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -22,21 +21,35 @@
       position: relative;
       width: 300px;
       height: 550px;
-      background: url('https://i.ibb.co/tMD1LPnf/phone-037.png') no-repeat center center;
+
+      /* Configurações de background */
+      background: url('./phone_037.png') no-repeat center center;
       background-size: contain;
-      background-color: transparent;
+
+      /* Espaçamento interno para o conteúdo */
       padding: 65px 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      border-radius: 50px;
+
+      /* Efeito de sombra */
+      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
     }
 
     .whatsapp-screen {
       background-color: #ece5dd;
-      height: 100%;
-      border-radius: 20px;
+      /* height: 100%; */
+      /* height: calc(100% + 43px); */
+      height: calc(100% + 95px);
+      /* Aumenta a altura */
+      width: calc(100% - 9px);
+      /* Aumenta a largura */
+      border-radius: 42px;
+      /* border-bottom-left-radius: 42px;
+      border-bottom-right-radius: 42px; */
       display: flex;
       flex-direction: column;
+      /* padding: 10px; */
       padding: 10px;
+      /* margin: -5px; */
+      margin: -58px -5px -5px -5px;
     }
 
     .messages {
@@ -55,6 +68,7 @@
     .input-area {
       display: flex;
       gap: 10px;
+      margin-bottom: 15px;
     }
 
     .input-area input {
@@ -77,12 +91,106 @@
       align-items: center;
       cursor: pointer;
     }
+
+    .whatsapp-header {
+      /* background-color: #075e54; */
+      background-color: #ffffff;
+      color: rgb(0, 0, 0);
+      padding: 10px;
+      margin: -10px -10px 10px -10px;
+      border-top-left-radius: 42px;
+      border-top-right-radius: 42px;
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 15px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .system-icons {
+      display: flex;
+      gap: 5px;
+    }
+
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-name {
+      font-weight: bold;
+    }
+
+    .online-status {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    .chat-actions {
+      display: flex;
+      gap: 15px;
+      font-size: 18px;
+    }
   </style>
 </head>
 
 <body>
   <div class="phone-container">
     <div class="whatsapp-screen">
+      <div class="whatsapp-header">
+        <div class="status-bar">
+          <div class="time"></div>
+          <div class="system-icons">
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-three-quarters"></i>
+          </div>
+        </div>
+        <div class="chat-header">
+          <div class="contact-info">
+            <div class="avatar">
+              <img src="https://github.com/juniorxf.png" alt="Profile">
+            </div>
+            <div class="contact-details">
+              <div class="contact-name">José Freitas</div>
+              <div class="online-status">online</div>
+            </div>
+          </div>
+          <div class="chat-actions">
+            <i class="fas fa-video"></i>
+            <i class="fas fa-phone"></i>
+            <i class="fas fa-ellipsis-v"></i>
+          </div>
+        </div>
+      </div>
       <div class="messages" id="messages">
         <div class="message">Olá! Como posso te ajudar?</div>
       </div>
@@ -94,6 +202,19 @@
   </div>
 
   <script>
+    // Adicione dentro da tag <script> existente
+    function updateTime() {
+      const timeElement = document.querySelector('.time');
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      timeElement.textContent = `${hours}:${minutes}`;
+    }
+
+    // Atualiza o horário a cada minuto
+    updateTime();
+    setInterval(updateTime, 60000);
+
     function sendMessage() {
       const input = document.getElementById('userInput');
       const messages = document.getElementById('messages');
