@@ -59,21 +59,23 @@
     .messages {
       flex-grow: 1;
       overflow-y: auto;
+      display: flex;
+      /* Adiciona display flex */
+      flex-direction: column;
+      /* Organiza as mensagens em coluna */
+      align-items: flex-end;
+      /* Alinha as mensagens à direita */
     }
 
     .message {
       background: #dcf8c6;
       border-radius: 7px;
       padding: 8px 35px 8px 8px;
-      /* Aumenta padding direito para acomodar o horário */
       margin-bottom: 10px;
-      align-self: flex-end;
-      /* Mantém alinhamento à direita */
       max-width: 80%;
       width: fit-content;
       position: relative;
       display: inline-block;
-      /* Ajuda no alinhamento do conteúdo */
     }
 
     .message span {
