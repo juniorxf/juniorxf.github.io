@@ -72,7 +72,7 @@
     .input-area {
       display: flex;
       gap: 10px;
-      margin-bottom: 15px;
+      margin-bottom: 35px;
     }
 
     .input-area input {
@@ -165,6 +165,43 @@
       gap: 15px;
       font-size: 18px;
     }
+
+    .android-navigation {
+      background-color: #ffffff;
+      /* color: rgb(0, 0, 0); */
+      position: absolute;
+      bottom: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      width: calc(100% - 20px);
+      /* height: calc(20% + 95px); */
+      height: 40px;
+      justify-content: center;
+      border-bottom-left-radius: 48px;
+      border-bottom-right-radius: 48px;
+    }
+
+    .nav-button {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .nav-button:hover {
+      color: rgba(0, 0, 0, 0.8);
+    }
+
+    .nav-button i {
+      font-size: 20px;
+    }
   </style>
 </head>
 
@@ -200,9 +237,14 @@
         <div class="message">Olá! Como posso te ajudar?</div>
       </div>
       <div class="input-area">
-        <input type="text" id="userInput" placeholder="Digite uma mensagem">
+        <input type="text" id="userInput" placeholder="Mensagem">
         <button onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button>
       </div>
+    </div>
+    <div class="android-navigation">
+      <div class="nav-button"><i class="fas fa-caret-left"></i></div>
+      <div class="nav-button"><i class="far fa-circle"></i></div>
+      <div class="nav-button"><i class="fas fa-square"></i></div>
     </div>
   </div>
 
