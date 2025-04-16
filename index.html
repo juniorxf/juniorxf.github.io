@@ -271,6 +271,17 @@
       color: rgba(0, 0, 0, 0.8);
     }
 
+    .nav-icon {
+      width: 22px;
+      height: 22px;
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-button:hover .nav-icon {
+      opacity: 0.8;
+    }
+
     .nav-button i {
       font-size: 20px;
     }
@@ -350,7 +361,10 @@
     </div>
     <div class="android-navigation">
       <div class="nav-button"><i class="fas fa-square"></i></div>
-      <div class="nav-button"><i class="far fa-circle"></i></div>
+      <!-- <div class="nav-button"><i class="far fa-circle"></i></div> -->
+      <div class="nav-button">
+        <img src="./circle.svg" alt="Circle" class="nav-icon">
+      </div>
       <div class="nav-button"><i class="fas fa-caret-left"></i></div>
     </div>
   </div>
