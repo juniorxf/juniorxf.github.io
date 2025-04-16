@@ -164,6 +164,7 @@
       display: flex;
       gap: 15px;
       font-size: 18px;
+      align-items: center;
     }
 
     .android-navigation {
@@ -174,7 +175,7 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 20px;
+      gap: 40px;
       align-items: center;
       width: calc(100% - 20px);
       /* height: calc(20% + 95px); */
@@ -202,6 +203,31 @@
     .nav-button i {
       font-size: 20px;
     }
+
+    .nav-button i.fa-square {
+      font-size: 17px;
+    }
+
+    .nav-button i.fa-caret-left {
+      font-size: 25px;
+    }
+
+    .action-icon {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+
+    .action-icon:hover {
+      opacity: 1;
+    }
+
+    .video-icon {
+      width: 24px;
+      height: 24px;
+    }
   </style>
 </head>
 
@@ -227,9 +253,12 @@
             </div>
           </div>
           <div class="chat-actions">
-            <i class="fas fa-video"></i>
-            <i class="fas fa-phone"></i>
-            <i class="fas fa-ellipsis-v"></i>
+            <!-- <i class="fas fa-video"></i>
+            <i class="fas fa-phone"></i> -->
+            <!-- <i class="fas fa-ellipsis-v"></i> -->
+            <img src="./video.svg" alt="Video call" class="action-icon video-icon">
+            <img src="./phone.svg" alt="Phone call" class="action-icon">
+            <img src="./ellipsis.svg" alt="Ellipsis call" class="action-icon">
           </div>
         </div>
       </div>
@@ -242,9 +271,9 @@
       </div>
     </div>
     <div class="android-navigation">
-      <div class="nav-button"><i class="fas fa-caret-left"></i></div>
-      <div class="nav-button"><i class="far fa-circle"></i></div>
       <div class="nav-button"><i class="fas fa-square"></i></div>
+      <div class="nav-button"><i class="far fa-circle"></i></div>
+      <div class="nav-button"><i class="fas fa-caret-left"></i></div>
     </div>
   </div>
 
