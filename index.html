@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -24,6 +24,127 @@
     <h1>Welcome to My Page</h1>
     <p>This is a simple webpage. Feel free to modify it according to your needs.</p>
   </div>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Portfolio Interativo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #7f00ff, #e100ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .phone-container {
+      position: relative;
+      width: 300px;
+      height: 600px;
+      background: url('https://i.imgur.com/6XyP2c4.png') no-repeat center center;
+      background-size: contain;
+      padding: 70px 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .whatsapp-screen {
+      background-color: #ece5dd;
+      height: 100%;
+      border-radius: 25px;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    .messages {
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    .message {
+      background: #dcf8c6;
+      border-radius: 7px;
+      padding: 8px;
+      margin-bottom: 10px;
+      align-self: flex-end;
+    }
+
+    .input-area {
+      display: flex;
+      gap: 10px;
+    }
+
+    .input-area input {
+      flex-grow: 1;
+      border-radius: 20px;
+      border: none;
+      padding: 10px;
+      outline: none;
+    }
+
+    .input-area button {
+      background-color: #25d366;
+      border: none;
+      border-radius: 50%;
+      color: white;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="phone-container">
+    <div class="whatsapp-screen">
+      <div class="messages" id="messages">
+        <div class="message">Olá! Como posso te ajudar?</div>
+      </div>
+      <div class="input-area">
+        <input type="text" id="userInput" placeholder="Digite uma mensagem">
+        <button onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const messages = document.getElementById('messages');
+
+      if (input.value.trim() !== '') {
+        const newMsg = document.createElement('div');
+        newMsg.classList.add('message');
+        newMsg.textContent = input.value;
+
+        messages.appendChild(newMsg);
+        messages.scrollTop = messages.scrollHeight;
+
+        // Aqui será o local para integrar a sua API WhatsApp posteriormente
+
+        input.value = '';
+      }
+    }
+
+    document.getElementById('userInput').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  </script>
 </body>
 
 </html>
