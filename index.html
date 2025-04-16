@@ -9,7 +9,8 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #7f00ff, #e100ff);
+      background-color: #f9f9f9;
+      /* background-color: #ffffff; */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -20,17 +21,19 @@
     .phone-container {
       position: relative;
       width: 300px;
-      height: 600px;
-      background: url('https://i.ibb.co/ccCpJ4J4/phone-036.jpg') no-repeat center center;
+      height: 550px;
+      background: url('https://i.ibb.co/tMD1LPnf/phone-037.png') no-repeat center center;
       background-size: contain;
-      padding: 70px 20px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      padding: 65px 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      /* box-shadow: 10 10px 30px rgba(0, 0, 0, 0.2); */
+      border-radius: 50px;
     }
 
     .whatsapp-screen {
       background-color: #ece5dd;
       height: 100%;
-      border-radius: 25px;
+      border-radius: 20px;
       display: flex;
       flex-direction: column;
       padding: 10px;
@@ -103,8 +106,6 @@
         messages.appendChild(newMsg);
         messages.scrollTop = messages.scrollHeight;
 
-        // Aqui será o local para integrar a sua API WhatsApp posteriormente
-
         input.value = '';
       }
     }
@@ -141,26 +142,39 @@
     .phone-container {
       position: relative;
       width: 300px;
-      height: 600px;
+      height: 550px;
       background: url('https://i.ibb.co/ccCpJ4J4/phone-036.jpg') no-repeat center center;
       background-size: contain;
-      padding: 65px 15px;
+      padding: 50px 5px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      border-radius: 35px;
+      border-radius: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .whatsapp-screen {
       background-color: #ece5dd;
       height: 100%;
+      width: 100%;
       border-radius: 20px;
       display: flex;
       flex-direction: column;
-      padding: 10px;
+      overflow: hidden;
+    }
+
+    .header {
+      background-color: #075e54;
+      height: 50px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      width: 100%;
     }
 
     .messages {
       flex-grow: 1;
       overflow-y: auto;
+      padding: 10px;
     }
 
     .message {
@@ -174,6 +188,7 @@
     .input-area {
       display: flex;
       gap: 10px;
+      padding: 10px;
     }
 
     .input-area input {
@@ -202,6 +217,7 @@
 <body>
   <div class="phone-container">
     <div class="whatsapp-screen">
+      <div class="header"></div>
       <div class="messages" id="messages">
         <div class="message">Olá! Como posso te ajudar?</div>
       </div>
