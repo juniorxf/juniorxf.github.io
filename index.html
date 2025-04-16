@@ -64,9 +64,34 @@
     .message {
       background: #dcf8c6;
       border-radius: 7px;
-      padding: 8px;
+      padding: 8px 35px 8px 8px;
+      /* Aumenta padding direito para acomodar o horário */
       margin-bottom: 10px;
       align-self: flex-end;
+      /* Mantém alinhamento à direita */
+      max-width: 80%;
+      width: fit-content;
+      position: relative;
+      display: inline-block;
+      /* Ajuda no alinhamento do conteúdo */
+    }
+
+    .message span {
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      display: block;
+      /* Garante que o texto ocupe a largura correta */
+    }
+
+    .message-time {
+      font-size: 11px;
+      color: #667781;
+      position: absolute;
+      bottom: 8px;
+      /* Ajusta distância da base */
+      right: 4px;
+      /* Ajusta distância da direita */
+      line-height: 1;
     }
 
     .input-area {
@@ -291,16 +316,45 @@
     updateTime();
     setInterval(updateTime, 60000);
 
+    // function sendMessage() {
+    //   const input = document.getElementById('userInput');
+    //   const messages = document.getElementById('messages');
+
+    //   if (input.value.trim() !== '') {
+    //     const newMsg = document.createElement('div');
+    //     newMsg.classList.add('message');
+    //     newMsg.textContent = input.value;
+
+    //     messages.appendChild(newMsg);
+    //     messages.scrollTop = messages.scrollHeight;
+
+    //     input.value = '';
+    //   }
+    // }
+
     function sendMessage() {
       const input = document.getElementById('userInput');
       const messages = document.getElementById('messages');
 
       if (input.value.trim() !== '') {
-        const newMsg = document.createElement('div');
-        newMsg.classList.add('message');
-        newMsg.textContent = input.value;
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
 
-        messages.appendChild(newMsg);
+        const messageContainer = document.createElement('div');
+        messageContainer.classList.add('message');
+
+        const messageText = document.createElement('span');
+        messageText.textContent = input.value;
+
+        const messageTime = document.createElement('span');
+        messageTime.classList.add('message-time');
+        messageTime.textContent = `${hours}:${minutes}`;
+
+        messageContainer.appendChild(messageText);
+        messageContainer.appendChild(messageTime);
+
+        messages.appendChild(messageContainer);
         messages.scrollTop = messages.scrollHeight;
 
         input.value = '';
