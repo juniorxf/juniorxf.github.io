@@ -34,61 +34,39 @@
     }
 
     .whatsapp-screen {
-      /* background-color: #ece5dd; */
-      /* background: url('./background.jpg'); */
       background: url('./background.jpeg');
       background-repeat: repeat;
-      /* background-size: auto; */
       background-size: contain;
-
       height: calc(100% + 95px);
-      /* Aumenta a altura */
       width: calc(100% - 9px);
-      /* Aumenta a largura */
       border-radius: 42px;
-      /* border-bottom-left-radius: 42px;
-      border-bottom-right-radius: 42px; */
       display: flex;
       flex-direction: column;
-      /* padding: 10px; */
       padding: 10px;
-      /* margin: -5px; */
       margin: -58px -5px -5px -5px;
     }
-
-    /* .messages {
-      flex-grow: 1;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-
-    .message {
-      background: #d8fdd2;
-      border-radius: 7px;
-      padding: 8px 35px 8px 8px;
-      margin-bottom: 10px;
-      max-width: 80%;
-      width: fit-content;
-      position: relative;
-      display: inline-block;
-    } */
 
     .messages {
       flex-grow: 1;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 1px;
       /* Reduz espaço entre mensagens */
+    }
+
+    /* Adicione este estilo para aumentar espaço entre mensagens de remetentes diferentes */
+    .message.sent+.message.received,
+    .message.received+.message.sent {
+      margin-top: 7px;
+      /* Aumenta o espaçamento entre mensagens de remetentes diferentes */
     }
 
     /* Estilo base para todas as mensagens */
     .message {
       border-radius: 7px;
       padding: 8px 35px 8px 8px;
-      margin-bottom: 5px;
+      margin-bottom: 1px;
       /* Reduz margem entre mensagens */
       max-width: 80%;
       width: fit-content;
@@ -99,12 +77,14 @@
     .message.sent {
       background: #d8fdd2;
       align-self: flex-end;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
     /* Estilo específico para mensagens recebidas (balão branco) */
     .message.received {
       background: #ffffff;
       align-self: flex-start;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
     /* Setinha para primeira mensagem enviada */
@@ -166,30 +146,29 @@
       padding: 10px;
       outline: none;
       font-size: 15px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
     }
 
     .input-area button {
-      /* background-color: #25d366; */
       border: none;
       border-radius: 50%;
       color: white;
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
     }
 
     .send-icon {
       width: 55px;
       height: 55px;
-      /* filter: brightness(0) invert(1); */
-      /* Faz o ícone ficar branco */
     }
 
     .whatsapp-header {
-      /* background-color: #075e54; */
       background-color: #ffffff;
       color: rgb(0, 0, 0);
       padding: 10px;
@@ -354,14 +333,11 @@
           </div>
         </div>
       </div>
-      <!-- <div class="messages" id="messages">
-        <div class="message">Olá! Como posso te ajudar?</div>
-      </div> -->
-      <!-- Substitua a div de mensagem inicial por: -->
       <div class="messages" id="messages">
         <div class="message received first">
           <span>Olá! Como posso te ajudar?</span>
-          <span class="message-time">12:00</span>
+          <!-- <span class="message-time">12:00</span> -->
+          <span class="message-time"></span>
         </div>
       </div>
       <div class="input-area">
@@ -392,35 +368,6 @@
     // Atualiza o horário a cada minuto
     updateTime();
     setInterval(updateTime, 60000);
-
-    // function sendMessage() {
-    //   const input = document.getElementById('userInput');
-    //   const messages = document.getElementById('messages');
-
-    //   if (input.value.trim() !== '') {
-    //     const now = new Date();
-    //     const hours = now.getHours().toString().padStart(2, '0');
-    //     const minutes = now.getMinutes().toString().padStart(2, '0');
-
-    //     const messageContainer = document.createElement('div');
-    //     messageContainer.classList.add('message');
-
-    //     const messageText = document.createElement('span');
-    //     messageText.textContent = input.value;
-
-    //     const messageTime = document.createElement('span');
-    //     messageTime.classList.add('message-time');
-    //     messageTime.textContent = `${hours}:${minutes}`;
-
-    //     messageContainer.appendChild(messageText);
-    //     messageContainer.appendChild(messageTime);
-
-    //     messages.appendChild(messageContainer);
-    //     messages.scrollTop = messages.scrollHeight;
-
-    //     input.value = '';
-    //   }
-    // }
 
     function sendMessage() {
       const input = document.getElementById('userInput');
@@ -455,6 +402,20 @@
         input.value = '';
       }
     }
+
+    function setInitialMessageTime() {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+
+      const initialMessageTime = document.querySelector('.message.received.first .message-time');
+      if (initialMessageTime) {
+        initialMessageTime.textContent = `${hours}:${minutes}`;
+      }
+    }
+
+    // Chame a função quando a página carregar
+    document.addEventListener('DOMContentLoaded', setInitialMessageTime);
 
     document.getElementById('userInput').addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
