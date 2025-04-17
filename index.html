@@ -542,6 +542,8 @@
             }
           }
 
+          console.log('Login falhou:', response.data);
+
           // Se chegou aqui, algo deu errado
           throw new Error('Falha na autenticação');
 
