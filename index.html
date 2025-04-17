@@ -499,10 +499,10 @@
             setInitialMessageTime();
             return;
           }
+          console.log('Login falhou:', response.data);
 
           // Se chegou aqui, é porque não tem os tokens
           throw new Error('Tokens não encontrados na resposta');
-          console.log('Login falhou:', response.data);
 
         } catch (error) {
           // console.error('Erro no login:', error);
