@@ -310,6 +310,29 @@
       width: 24px;
       height: 24px;
     }
+
+    .login-background {
+      background: linear-gradient(135deg, #075E54 0%, #128C7E 100%);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 42px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-screen {
+      padding: 30px;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.98);
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      width: 85%;
+      max-width: 280px;
+    }
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -320,7 +343,7 @@
     <div class="whatsapp-screen">
 
       <!-- Tela de login -->
-      <div id="loginScreen" style="padding:20px; text-align:center; margin-top:50px;">
+      <!-- <div id="loginScreen" style="padding:20px; text-align:center; margin-top:50px;">
         <h3 style="color:#075E54;">Login</h3>
         <input id="username" placeholder="Usuário"
           style="width:90%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #ddd;">
@@ -328,6 +351,15 @@
           style="width:90%; padding:10px; margin-bottom:20px; border-radius:5px; border:1px solid #ddd;">
         <button onclick="handleLogin()"
           style="padding:10px 20px; background:#25D366; color:#fff; border:none; border-radius:20px; cursor:pointer;">Entrar</button>
+      </div> -->
+
+      <div id="loginBackground" class="login-background">
+        <div id="loginScreen" class="login-screen">
+          <h3>Bem-vindo</h3>
+          <input id="username" placeholder="Usuário" type="text">
+          <input id="password" placeholder="Senha" type="password">
+          <button onclick="handleLogin()">Entrar</button>
+        </div>
       </div>
 
       <!-- Tela WhatsApp (inicialmente oculta) -->
@@ -405,22 +437,55 @@
         try {
           const response = await axiosInstance.post('/auth/login', { username, password });
 
-          if (response.status === 200 && response.data.token) {
-            document.cookie = `authToken=${response.data.token}; path=/; secure; max-age=86400`;
+          // if (response.status === 200 && response.data.token) {
+          //   document.cookie = `authToken=${response.data.token}; path=/; secure; max-age=86400`;
+
+          //   // Muda para a tela de chat
+          //   // document.getElementById('loginScreen').style.display = 'none';
+          //   document.getElementById('loginBackground').style.display = 'none';
+          //   document.getElementById('chatScreen').style.display = 'flex';
+
+          //   setInitialMessageTime();
+          // } else {
+          //   console.log('Login falhou:', response.data);
+          //   alert('Usuário ou senha incorretos.');
+          // }
+
+          // Verifica se a resposta contém os tokens
+          if (response.data.accessToken || response.data.refreshToken) {
+            // Salva os tokens nos cookies
+            document.cookie = `accessToken=${response.data.accessToken}; path=/; secure; max-age=86400`;
+            document.cookie = `refreshToken=${response.data.refreshToken}; path=/; secure; max-age=86400`;
 
             // Muda para a tela de chat
-            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('loginBackground').style.display = 'none';
             document.getElementById('chatScreen').style.display = 'flex';
 
             setInitialMessageTime();
-          } else {
-            console.log('Login falhou:', response.data);
-            alert('Usuário ou senha incorretos.');
+            return;
           }
 
+          // Se chegou aqui, é porque não tem os tokens
+          throw new Error('Tokens não encontrados na resposta');
+
         } catch (error) {
+          // console.error('Erro no login:', error);
+          // alert('Falha na conexão com o servidor.');
+
           console.error('Erro no login:', error);
-          alert('Falha na conexão com o servidor.');
+
+          // Verifica se já temos os tokens nos cookies antes de mostrar o erro
+          const hasAccessToken = document.cookie.includes('accessToken');
+          const hasRefreshToken = document.cookie.includes('refreshToken');
+
+          if (hasAccessToken && hasRefreshToken) {
+            // Se temos os tokens, consideramos o login bem-sucedido
+            document.getElementById('loginBackground').style.display = 'none';
+            document.getElementById('chatScreen').style.display = 'flex';
+            setInitialMessageTime();
+          } else {
+            alert('Usuário ou senha incorretos.');
+          }
         }
       }
 
