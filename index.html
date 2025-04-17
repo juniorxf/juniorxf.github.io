@@ -471,46 +471,25 @@
 
         try {
           const response = await axiosInstance.post('/auth/login', { username, password });
-          console.log('Resposta do login:', response.data);
 
-          // Se a mensagem indica sucesso, procede com o login
-          // if (response.data.message === 'Login bem-sucedido.') {
-          //   // Verifica os cookies após um pequeno delay para garantir que foram setados
-          //   setTimeout(() => {
-          //     const hasAccessToken = document.cookie.includes('accessToken');
-          //     const hasRefreshToken = document.cookie.includes('refreshToken');
+          const { accessToken, refreshToken } = response.data;
 
-          //     if (hasAccessToken && hasRefreshToken) {
-          //       // Login bem sucedido e tokens presentes
-          //       document.getElementById('loginBackground').style.display = 'none';
-          //       document.getElementById('chatScreen').style.display = 'flex';
-          //       setInitialMessageTime();
-          //     } else {
-          //       console.warn('Tokens não encontrados nos cookies');
-          //     }
-          //   }, 100);
-
-          //   return;
-          // }
-          if (response.data.accessToken && response.data.refreshToken) {
-            // Armazena os tokens nos cookies (opcional: localStorage também)
-            document.cookie = `authToken=${response.data.accessToken}; path=/; secure; max-age=86400`;
-            document.cookie = `refreshToken=${response.data.refreshToken}; path=/; secure; max-age=86400`;
-
-            // Troca de telas (login -> chat)
-            document.getElementById('loginBackground').style.display = 'none';
-            document.getElementById('chatScreen').style.display = 'flex';
-            setInitialMessageTime();
-          } else {
-            alert('Login falhou. Verifique suas credenciais.');
+          if (!accessToken || !refreshToken) {
+            throw new Error('Tokens ausentes na resposta.');
           }
 
-          // Se chegou aqui, a mensagem não indica sucesso
-          // throw new Error('Resposta inesperada do servidor');
+          // Armazena nos cookies
+          document.cookie = `authToken=${accessToken}; path=/; secure; max-age=86400`;
+          document.cookie = `refreshToken=${refreshToken}; path=/; secure; max-age=86400`;
+
+          // Troca a tela
+          document.getElementById('loginBackground').style.display = 'none';
+          document.getElementById('chatScreen').style.display = 'flex';
+          setInitialMessageTime();
 
         } catch (error) {
-          console.error('Erro no login:', error);
-          alert('Não foi possível realizar o login. Tente novamente.');
+          console.error('Erro ao fazer login:', error);
+          alert('Login falhou. Verifique suas credenciais.');
         }
       }
 
