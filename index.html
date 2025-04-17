@@ -477,13 +477,13 @@
             // Salva manualmente os tokens no localStorage se não estiverem
             const tokenFromCookie = document.cookie
               .split('; ')
-              .find(row => row.startsWith('authToken='))?.split('=')[1];
+              .find(row => row.startsWith('accessToken='))?.split('=')[1];
 
-            const tokenFromStorage = localStorage.getItem('authToken');
+            const tokenFromStorage = localStorage.getItem('accessToken');
 
             if (!tokenFromCookie && tokenFromStorage) {
               // salva no cookie também para fallback
-              document.cookie = `authToken=${tokenFromStorage}; path=/; secure; max-age=86400`;
+              document.cookie = `accessToken=${tokenFromStorage}; path=/; secure; max-age=86400`;
             }
 
             // Se token existir em qualquer lugar, prossegue
