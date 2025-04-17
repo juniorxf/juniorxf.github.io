@@ -477,6 +477,8 @@
 
       async function sendWhatsAppMessage(messageText) {
         const token = document.cookie.split('; ').find(row => row.startsWith('accessToken='))?.split('=')[1];
+        console.log("Token:", token);
+        console.log("Cookie accessToken:", document.cookie.accessToken);
         if (!token) return false;
 
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
