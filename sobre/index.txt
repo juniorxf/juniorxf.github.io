@@ -1,0 +1,20 @@
+1:"$Sreact.fragment"
+2:I[2271,["177","static/chunks/app/layout-d5f2c251bfd9b30d.js"],"default"]
+3:I[7555,[],""]
+4:I[1295,[],""]
+5:I[9665,[],"MetadataBoundary"]
+7:I[9665,[],"OutletBoundary"]
+a:I[4911,[],"AsyncMetadataOutlet"]
+c:I[9665,[],"ViewportBoundary"]
+e:I[6614,[],""]
+:HL["/_next/static/media/a34f9d1faa5f3315-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/b8852b850ea3fdcf.css","style"]
+0:{"P":null,"b":"ZFJLVv6TmbfZS6gXqyoKA","p":"","c":["","sobre",""],"i":false,"f":[[["",{"children":["sobre",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/b8852b850ea3fdcf.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"pt-br","children":["$","body",null,{"suppressHydrationWarning":true,"className":"__className_d65c78","children":[["$","$L2",null,{}]," ",["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","main",null,{"style":{"padding":"40px","textAlign":"center"},"children":[["$","h1",null,{"style":{"fontSize":"2rem"},"children":"404 - Página não encontrada"}],["$","p",null,{"style":{"marginTop":"10px"},"children":"Desculpe, a página que você está tentando acessar não existe."}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}]}]]}],{"children":["sobre",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","section",null,{"style":{"padding":40},"children":[["$","h2",null,{"children":"Sobre Mim"}],["$","p",null,{"children":"Meu nome é José. Este é meu portfólio como desenvolvedor."}]]}],["$","$L5",null,{"children":"$L6"}],null,["$","$L7",null,{"children":["$L8","$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","zzezPS4Kwa_n8UY0ela46",{"children":[["$","$Lc",null,{"children":"$Ld"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],null]}],false]],"m":"$undefined","G":["$e","$undefined"],"s":false,"S":true}
+f:"$Sreact.suspense"
+10:I[4911,[],"AsyncMetadata"]
+6:["$","$f",null,{"fallback":null,"children":["$","$L10",null,{"promise":"$@11"}]}]
+9:null
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+8:null
+11:{"metadata":[["$","title","0",{"children":"Portfólio José Freitas"}],["$","meta","1",{"name":"description","content":"Apresentação visual dos projetos pessoais de José Freitas"}]],"error":null,"digest":"$undefined"}
+b:{"metadata":"$11:metadata","error":null,"digest":"$undefined"}
