@@ -473,23 +473,12 @@
           const response = await axiosInstance.post('/auth/login', { username, password });
 
           if (response.status === 200) {
-            const { accessToken, refreshToken } = response.data;
-
-            // Armazena os tokens no localStorage
-            if (accessToken) localStorage.setItem('authToken', accessToken);
-            if (refreshToken) localStorage.setItem('refreshToken', refreshToken);
-
-            // Verifica se o token está salvo com sucesso
-            const savedToken = localStorage.getItem('authToken');
-            if (savedToken) {
-              document.getElementById('loginBackground').style.display = 'none';
-              document.getElementById('chatScreen').style.display = 'flex';
-              setInitialMessageTime();
-            } else {
-              throw new Error('Token não salvo corretamente no localStorage.');
-            }
+            // Não precisa mexer no localStorage nem nos cookies diretamente
+            document.getElementById('loginBackground').style.display = 'none';
+            document.getElementById('chatScreen').style.display = 'flex';
+            setInitialMessageTime();
           } else {
-            throw new Error(`Resposta inesperada: ${response.status}`);
+            throw new Error('Login falhou.');
           }
         } catch (error) {
           console.error('Erro ao fazer login:', error);
@@ -697,8 +686,14 @@
 
       // Fazer login quando a página carregar
       document.addEventListener('DOMContentLoaded', async () => {
-        // await doLogin();
-        setInitialMessageTime();
+        try {
+          await axiosInstance.get('/auth/me'); // ou /me
+          document.getElementById('loginBackground').style.display = 'none';
+          document.getElementById('chatScreen').style.display = 'flex';
+          setInitialMessageTime();
+        } catch (err) {
+          console.log('Usuário não autenticado.');
+        }
       });
 
       // Chame a função quando a página carregar
