@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Portfolio Interativo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .phone-container {
+      position: relative;
+      width: 300px;
+      height: 550px;
+
+      /* Configurações de background */
+      background: url('./phone_037.png') no-repeat center center;
+      background-size: contain;
+
+      /* Espaçamento interno para o conteúdo */
+      padding: 65px 15px;
+
+      /* Efeito de sombra */
+      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+    }
+
+    .whatsapp-screen {
+      background: url('./background.jpeg');
+      background-repeat: repeat;
+      background-size: contain;
+      height: calc(100% + 95px);
+      width: calc(100% - 9px);
+      border-radius: 42px;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      margin: -58px -5px -5px -5px;
+    }
+
+    .messages {
+      flex-grow: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      /* Reduz espaço entre mensagens */
+    }
+
+    /* Adicione este estilo para aumentar espaço entre mensagens de remetentes diferentes */
+    .message.sent+.message.received,
+    .message.received+.message.sent {
+      margin-top: 7px;
+      /* Aumenta o espaçamento entre mensagens de remetentes diferentes */
+    }
+
+    /* Estilo base para todas as mensagens */
+    .message {
+      border-radius: 7px;
+      padding: 8px 35px 8px 8px;
+      margin-bottom: 1px;
+      /* Reduz margem entre mensagens */
+      max-width: 80%;
+      width: fit-content;
+      position: relative;
+    }
+
+    /* Estilo específico para mensagens enviadas (balão verde) */
+    .message.sent {
+      background: #d8fdd2;
+      align-self: flex-end;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilo específico para mensagens recebidas (balão branco) */
+    .message.received {
+      background: #ffffff;
+      align-self: flex-start;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Setinha para primeira mensagem enviada */
+    .message.sent.first::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -8px;
+      /* Alterado de 8px para -8px */
+      width: 0;
+      height: 0;
+      border-left: 8px solid #d8fdd2;
+      /* Alterado de border-right para border-left */
+      border-top: 8px solid transparent;
+    }
+
+    /* Setinha para primeira mensagem recebida */
+    .message.received.first::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -8px;
+      width: 0;
+      height: 0;
+      border-right: 8px solid #ffffff;
+      border-top: 8px solid transparent;
+    }
+
+    .message span {
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      display: block;
+      font-size: 14px;
+      /* Garante que o texto ocupe a largura correta */
+    }
+
+    /* .message-time { */
+    .message span.message-time {
+      font-size: 10px;
+      color: #667781;
+      position: absolute;
+      bottom: 4px;
+      /* Ajusta distância da base */
+      right: 6px;
+      /* Ajusta distância da direita */
+      line-height: 1;
+    }
+
+    .input-area {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 35px;
+    }
+
+    .input-area input {
+      flex-grow: 1;
+      border-radius: 20px;
+      border: none;
+      padding: 10px;
+      outline: none;
+      font-size: 15px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+    }
+
+    .input-area button {
+      border: none;
+      border-radius: 50%;
+      color: white;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    .send-icon {
+      width: 55px;
+      height: 55px;
+    }
+
+    .whatsapp-header {
+      background-color: #ffffff;
+      color: rgb(0, 0, 0);
+      padding: 10px;
+      margin: -10px -10px 10px -10px;
+      border-top-left-radius: 42px;
+      border-top-right-radius: 42px;
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 15px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .system-icons {
+      display: flex;
+      gap: 5px;
+    }
+
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-name {
+      /* font-weight: bold; */
+      font-weight: regular;
+    }
+
+    .online-status {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    .chat-actions {
+      display: flex;
+      gap: 15px;
+      font-size: 18px;
+      align-items: center;
+    }
+
+    .android-navigation {
+      background-color: #ffffff;
+      /* color: rgb(0, 0, 0); */
+      position: absolute;
+      bottom: 7px;
+      /* left: 50%; */
+      left: calc(50% + 0.5px);
+      transform: translateX(-50%);
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      /* width: calc(100% - 16px); */
+      width: calc(100% - 17.5px);
+      /* height: calc(20% + 95px); */
+      height: 40px;
+      justify-content: center;
+      /* border-bottom-left-radius: 48px; */
+      border-bottom-left-radius: 50px;
+      /* border-bottom-right-radius: 48px; */
+      border-bottom-right-radius: 50px;
+    }
+
+    .nav-button {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .nav-button:hover {
+      color: rgba(0, 0, 0, 0.8);
+    }
+
+    .nav-icon {
+      width: 22px;
+      height: 22px;
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-button:hover .nav-icon {
+      opacity: 0.8;
+    }
+
+    .nav-button i {
+      font-size: 20px;
+    }
+
+    .nav-button i.fa-square {
+      font-size: 17px;
+    }
+
+    .nav-button i.fa-caret-left {
+      font-size: 25px;
+    }
+
+    .action-icon {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+
+    .action-icon:hover {
+      opacity: 1;
+    }
+
+    .video-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Adicione estes estilos dentro da tag <style> existente */
+    .login-background {
+      background-color: rgba(54, 145, 237, 0.95);
+      height: calc(100% + 95px);
+      width: calc(100% + 2px);
+      border-radius: 42px;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      margin: -10px 0px -10px -11px;
+    }
+
+    .login-screen {
+      padding: 20px;
+      text-align: center;
+      margin-top: 160px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-screen h3 {
+      color: #075E54;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .login-screen input {
+      width: 90%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+
+    .login-screen input:focus {
+      border-color: #25D366;
+      outline: none;
+    }
+
+    .login-screen button {
+      padding: 12px 30px;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-screen button:hover {
+      background: #128C7E;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <div class="phone-container">
+    <div class="whatsapp-screen">
+
+      <!-- Substitua a div do loginScreen por: -->
+      <div id="loginBackground" class="login-background">
+        <div id="loginScreen" class="login-screen">
+          <h3>Bem-vindo</h3>
+          <input id="username" placeholder="Usuário" type="text">
+          <input id="password" placeholder="Senha" type="password">
+          <button onclick="handleLogin()">Entrar</button>
+        </div>
+      </div>
+
+      <!-- Tela WhatsApp (inicialmente oculta) -->
+      <div id="chatScreen" style="display:none; flex-direction:column; height:100%;">
+
+        <div class="whatsapp-header">
+          <div class="status-bar">
+            <div class="time"></div>
+            <div class="system-icons">
+              <i class="fas fa-wifi"></i>
+              <i class="fas fa-battery-three-quarters"></i>
+            </div>
+          </div>
+          <div class="chat-header">
+            <div class="contact-info">
+              <div class="avatar">
+                <img src="https://github.com/juniorxf.png" alt="Profile">
+              </div>
+              <div class="contact-details">
+                <div class="contact-name">José Freitas</div>
+                <div class="online-status">online</div>
+              </div>
+            </div>
+            <div class="chat-actions">
+              <!-- <i class="fas fa-video"></i>
+            <i class="fas fa-phone"></i> -->
+              <!-- <i class="fas fa-ellipsis-v"></i> -->
+              <img src="./video.svg" alt="Video call" class="action-icon video-icon">
+              <img src="./phone.svg" alt="Phone call" class="action-icon">
+              <img src="./ellipsis.svg" alt="Ellipsis call" class="action-icon">
+            </div>
+          </div>
+        </div>
+        <div class="messages" id="messages">
+          <div class="message received first">
+            <span>Olá! Como posso te ajudar?</span>
+            <!-- <span class="message-time">12:00</span> -->
+            <span class="message-time"></span>
+          </div>
+        </div>
+        <div class="input-area">
+          <input type="text" id="userInput" placeholder="Mensagem">
+          <!-- <button onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button> -->
+          <button onclick="sendMessage()">
+            <img src="./send.svg" alt="Send message" class="send-icon">
+          </button>
+        </div>
+      </div>
+      <div class="android-navigation">
+        <div class="nav-button"><i class="fas fa-square"></i></div>
+        <!-- <div class="nav-button"><i class="far fa-circle"></i></div> -->
+        <div class="nav-button">
+          <img src="./circle.svg" alt="Circle" class="nav-icon">
+        </div>
+        <div class="nav-button"><i class="fas fa-caret-left"></i></div>
+      </div>
+    </div>
+
+    <script>
+      // Configuração do axios
+      const axiosInstance = axios.create({
+        baseURL: 'https://app.help7.com.br',
+        withCredentials: true // Importante para cookies
+      });
+
+      async function handleLogin() {
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        if (!username || !password) {
+          alert('Por favor, preencha todos os campos.');
+          return;
+        }
+
+        try {
+          const response = await axiosInstance.post('/auth/login', { username, password });
+
+          if (response.status === 200) {
+            // Não precisa mexer no localStorage nem nos cookies diretamente
+            document.getElementById('loginBackground').style.display = 'none';
+            document.getElementById('chatScreen').style.display = 'flex';
+            setInitialMessageTime();
+          } else {
+            throw new Error('Login falhou.');
+          }
+        } catch (error) {
+          console.error('Erro ao fazer login:', error);
+          alert('Erro ao fazer login. Verifique suas credenciais.');
+        }
+      }
+
+      async function sendWhatsAppMessage(messageText) {
+        const payload = {
+          sessionName: "corretor",
+          contacts: [{ number: "556299957980", nome_inicial: "José", nome_completo: "José Freitas" }],
+          message: messageText
+        };
+
+        try {
+          const result = await axiosInstance.post('/api/send-pers-message', payload);
+          return result.status === 200;
+        } catch (error) {
+          console.error("Erro ao enviar mensagem:", error.response?.data || error.message || error);
+          alert("Erro ao enviar mensagem. Veja o console para detalhes.");
+          return false;
+        }
+      }
+
+      function updateTime() {
+        const timeElement = document.querySelector('.time');
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        timeElement.textContent = `${hours}:${minutes}`;
+      }
+
+      // Atualiza o horário a cada minuto
+      updateTime();
+      setInterval(updateTime, 60000);
+
+      // Modificar a função sendMessage existente
+      async function sendMessage() {
+        const input = document.getElementById('userInput');
+        const messages = document.getElementById('messages');
+
+        if (input.value.trim() !== '') {
+          const rawMessageText = input.value;
+
+          // Adiciona a mensagem na interface
+          const now = new Date();
+          const hours = now.getHours().toString().padStart(2, '0');
+          const minutes = now.getMinutes().toString().padStart(2, '0');
+
+          const messageContainer = document.createElement('div');
+          messageContainer.classList.add('message', 'sent');
+
+          if (!document.querySelector('.message.sent')) {
+            messageContainer.classList.add('first');
+          }
+
+          const messageSpan = document.createElement('span');
+          messageSpan.textContent = rawMessageText;
+
+          const messageTime = document.createElement('span');
+          messageTime.classList.add('message-time');
+          messageTime.textContent = `${hours}:${minutes}`;
+
+          messageContainer.appendChild(messageSpan);
+          messageContainer.appendChild(messageTime);
+          messages.appendChild(messageContainer);
+          messages.scrollTop = messages.scrollHeight;
+
+          // Envia a mensagem via WhatsApp
+          const sent = await sendWhatsAppMessage(rawMessageText);
+          if (!sent) {
+            alert("Erro ao enviar mensagem via WhatsApp.");
+          }
+
+          input.value = '';
+        }
+      }
+
+      function setInitialMessageTime() {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+
+        const initialMessageTime = document.querySelector('.message.received.first .message-time');
+        if (initialMessageTime) {
+          initialMessageTime.textContent = `${hours}:${minutes}`;
+        }
+      }
+
+      // // Fazer login quando a página carregar
+      // document.addEventListener('DOMContentLoaded', async () => {
+      //   try {
+      //     await axiosInstance.get('/auth/me'); // ou /me
+      //     document.getElementById('loginBackground').style.display = 'none';
+      //     document.getElementById('chatScreen').style.display = 'flex';
+      //     setInitialMessageTime();
+      //   } catch (err) {
+      //     console.log('Usuário não autenticado.');
+      //   }
+      // });
+
+      // document.getElementById('loginBackground').style.display = 'none';
+      //   document.getElementById('chatScreen').style.display = 'flex';
+      document.addEventListener('DOMContentLoaded', () => {
+        // Apenas carrega o horário na mensagem inicial
+        setInitialMessageTime();
+      });
+
+
+      document.getElementById('userInput').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+          sendMessage();
+        }
+      });
+    </script>
+</body>
+
+</html>
