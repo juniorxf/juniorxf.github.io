@@ -472,24 +472,34 @@
         try {
           const response = await axiosInstance.post('/auth/login', { username, password });
 
-          const { accessToken, refreshToken } = response.data;
+          // Verifica se a resposta foi 200
+          if (response.status === 200) {
+            // Salva manualmente os tokens no localStorage se não estiverem
+            const tokenFromCookie = document.cookie
+              .split('; ')
+              .find(row => row.startsWith('authToken='))?.split('=')[1];
 
-          if (!accessToken || !refreshToken) {
-            throw new Error('Tokens ausentes na resposta.');
+            const tokenFromStorage = localStorage.getItem('authToken');
+
+            if (!tokenFromCookie && tokenFromStorage) {
+              // salva no cookie também para fallback
+              document.cookie = `authToken=${tokenFromStorage}; path=/; secure; max-age=86400`;
+            }
+
+            // Se token existir em qualquer lugar, prossegue
+            if (tokenFromCookie || tokenFromStorage) {
+              document.getElementById('loginBackground').style.display = 'none';
+              document.getElementById('chatScreen').style.display = 'flex';
+              setInitialMessageTime();
+            } else {
+              throw new Error('Token não localizado nem no cookie nem no localStorage.');
+            }
+          } else {
+            throw new Error(`Resposta inesperada: ${response.status}`);
           }
-
-          // Armazena nos cookies
-          document.cookie = `authToken=${accessToken}; path=/; secure; max-age=86400`;
-          document.cookie = `refreshToken=${refreshToken}; path=/; secure; max-age=86400`;
-
-          // Troca a tela
-          document.getElementById('loginBackground').style.display = 'none';
-          document.getElementById('chatScreen').style.display = 'flex';
-          setInitialMessageTime();
-
         } catch (error) {
           console.error('Erro ao fazer login:', error);
-          alert('Login falhou. Verifique suas credenciais.');
+          alert('Não foi possível realizar o login. Tente novamente.');
         }
       }
 
