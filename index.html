@@ -311,27 +311,61 @@
       height: 24px;
     }
 
+    /* Adicione estes estilos dentro da tag <style> existente */
     .login-background {
-      background: linear-gradient(135deg, #075E54 0%, #128C7E 100%);
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      background-color: rgba(54, 145, 237, 0.95);
+      height: calc(100% + 95px);
+      width: calc(100% + 2px);
       border-radius: 42px;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
+      padding: 10px;
+      margin: -10px 0px -10px -11px;
     }
 
     .login-screen {
-      padding: 30px;
+      padding: 20px;
       text-align: center;
-      background-color: rgba(255, 255, 255, 0.98);
+      margin-top: 160px;
+      background-color: rgba(255, 255, 255, 0.95);
       border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      width: 85%;
-      max-width: 280px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-screen h3 {
+      color: #075E54;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .login-screen input {
+      width: 90%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+
+    .login-screen input:focus {
+      border-color: #25D366;
+      outline: none;
+    }
+
+    .login-screen button {
+      padding: 12px 30px;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-screen button:hover {
+      background: #128C7E;
     }
   </style>
 
@@ -353,6 +387,7 @@
           style="padding:10px 20px; background:#25D366; color:#fff; border:none; border-radius:20px; cursor:pointer;">Entrar</button>
       </div> -->
 
+      <!-- Substitua a div do loginScreen por: -->
       <div id="loginBackground" class="login-background">
         <div id="loginScreen" class="login-screen">
           <h3>Bem-vindo</h3>
