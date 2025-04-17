@@ -1,25 +1,24 @@
 1:"$Sreact.fragment"
-2:I[2271,["177","static/chunks/app/layout-d5f2c251bfd9b30d.js"],"default"]
-3:I[7555,[],""]
-4:I[1295,[],""]
-5:I[894,[],"ClientPageRoot"]
-6:I[8093,["204","static/chunks/94730671-08854c500d8d4c89.js","206","static/chunks/5e22fd23-531e58c9a8944edb.js","711","static/chunks/8e1d74a4-3694510d143ea583.js","115","static/chunks/115-b8d70d3be0614cf5.js","950","static/chunks/app/projetos/whatsapp/page-18565aed0bc32398.js"],"default"]
-9:I[9665,[],"MetadataBoundary"]
-b:I[9665,[],"OutletBoundary"]
-e:I[4911,[],"AsyncMetadataOutlet"]
-10:I[9665,[],"ViewportBoundary"]
-12:I[6614,[],""]
+2:I[7555,[],""]
+3:I[1295,[],""]
+4:I[894,[],"ClientPageRoot"]
+5:I[8093,["204","static/chunks/94730671-08854c500d8d4c89.js","206","static/chunks/5e22fd23-531e58c9a8944edb.js","711","static/chunks/8e1d74a4-3694510d143ea583.js","115","static/chunks/115-b8d70d3be0614cf5.js","950","static/chunks/app/projetos/whatsapp/page-18565aed0bc32398.js"],"default"]
+8:I[9665,[],"MetadataBoundary"]
+a:I[9665,[],"OutletBoundary"]
+d:I[4911,[],"AsyncMetadataOutlet"]
+f:I[9665,[],"ViewportBoundary"]
+11:I[6614,[],""]
 :HL["/_next/static/media/a34f9d1faa5f3315-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/css/b8852b850ea3fdcf.css","style"]
 :HL["/_next/static/css/ff13af43b76687a4.css","style"]
-0:{"P":null,"b":"YEZgdblf8KzycUtXiusht","p":"","c":["","projetos","whatsapp",""],"i":false,"f":[[["",{"children":["projetos",{"children":["whatsapp",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/b8852b850ea3fdcf.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"pt-br","className":"__className_d65c78","children":[["$","head",null,{"children":["$","$L2",null,{}]}],["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","main",null,{"style":{"padding":"40px","textAlign":"center"},"children":[["$","h1",null,{"style":{"fontSize":"2rem"},"children":"404 - Página não encontrada"}],["$","p",null,{"style":{"marginTop":"10px"},"children":"Desculpe, a página que você está tentando acessar não existe."}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]]}],{"children":["projetos",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["whatsapp",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L5",null,{"Component":"$6","searchParams":{},"params":{},"promises":["$@7","$@8"]}],["$","$L9",null,{"children":"$La"}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/ff13af43b76687a4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","$Lb",null,{"children":["$Lc","$Ld",["$","$Le",null,{"promise":"$@f"}]]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","Cv0D9AXy2TpvXNvzFTL_w",{"children":[["$","$L10",null,{"children":"$L11"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],null]}],false]],"m":"$undefined","G":["$12","$undefined"],"s":false,"S":true}
-13:"$Sreact.suspense"
-14:I[4911,[],"AsyncMetadata"]
+0:{"P":null,"b":"BpNaYbSq6uvOaWQFfhoVp","p":"","c":["","projetos","whatsapp",""],"i":false,"f":[[["",{"children":["projetos",{"children":["whatsapp",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/b8852b850ea3fdcf.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"pt-br","className":"__className_d65c78","children":[["$","head",null,{"children":["$","link",null,{"rel":"stylesheet","href":"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css","integrity":"sha512-yRLhKuDovnh1cZGrqX7Vb7F7vUk/xf30Ml0WeEOL4R2dcCLo7B5rOViXKyKJeb8u3oHwDQguNYhQj2JWzqY3RQ==","crossOrigin":"anonymous","referrerPolicy":"no-referrer"}]}],["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","main",null,{"style":{"padding":"40px","textAlign":"center"},"children":[["$","h1",null,{"style":{"fontSize":"2rem"},"children":"404 - Página não encontrada"}],["$","p",null,{"style":{"marginTop":"10px"},"children":"Desculpe, a página que você está tentando acessar não existe."}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]]}],{"children":["projetos",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["whatsapp",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L4",null,{"Component":"$5","searchParams":{},"params":{},"promises":["$@6","$@7"]}],["$","$L8",null,{"children":"$L9"}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/ff13af43b76687a4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","$La",null,{"children":["$Lb","$Lc",["$","$Ld",null,{"promise":"$@e"}]]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","vVIlbeE7nn9aLNeMjJwf_",{"children":[["$","$Lf",null,{"children":"$L10"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],null]}],false]],"m":"$undefined","G":["$11","$undefined"],"s":false,"S":true}
+12:"$Sreact.suspense"
+13:I[4911,[],"AsyncMetadata"]
+6:{}
 7:{}
-8:{}
-a:["$","$13",null,{"fallback":null,"children":["$","$L14",null,{"promise":"$@15"}]}]
-d:null
-11:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:["$","$12",null,{"fallback":null,"children":["$","$L13",null,{"promise":"$@14"}]}]
 c:null
-15:{"metadata":[["$","title","0",{"children":"Portfólio José Freitas"}],["$","meta","1",{"name":"description","content":"Apresentação visual dos projetos pessoais de José Freitas"}]],"error":null,"digest":"$undefined"}
-f:{"metadata":"$15:metadata","error":null,"digest":"$undefined"}
+10:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+b:null
+14:{"metadata":[["$","title","0",{"children":"Portfólio José Freitas"}],["$","meta","1",{"name":"description","content":"Apresentação visual dos projetos pessoais de José Freitas"}]],"error":null,"digest":"$undefined"}
+e:{"metadata":"$14:metadata","error":null,"digest":"$undefined"}
