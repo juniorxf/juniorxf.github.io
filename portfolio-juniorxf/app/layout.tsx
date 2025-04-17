@@ -5,7 +5,7 @@ import FontAwesomeHead from './fontawesome-head'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
-export const dynamic = 'force-dynamic'; // Força o Next a renderizar do lado do cliente
+// export const dynamic = 'force-dynamic'; // Força o Next a renderizar do lado do cliente
 
 export const metadata: Metadata = {
   title: 'Portfólio José Freitas',
