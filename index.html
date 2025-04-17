@@ -509,7 +509,8 @@
           const result = await axiosInstance.post('/api/send-pers-message', payload);
           return result.status === 200;
         } catch (error) {
-          console.error("Erro ao enviar mensagem:", error.response || error.message || error);
+          console.error("Erro ao enviar mensagem:", error.response?.data || error.message || error);
+          alert("Erro ao enviar mensagem. Veja o console para detalhes.");
           return false;
         }
       }
@@ -579,17 +580,25 @@
         }
       }
 
-      // Fazer login quando a página carregar
-      document.addEventListener('DOMContentLoaded', async () => {
-        try {
-          await axiosInstance.get('/auth/me'); // ou /me
-          document.getElementById('loginBackground').style.display = 'none';
-          document.getElementById('chatScreen').style.display = 'flex';
-          setInitialMessageTime();
-        } catch (err) {
-          console.log('Usuário não autenticado.');
-        }
+      // // Fazer login quando a página carregar
+      // document.addEventListener('DOMContentLoaded', async () => {
+      //   try {
+      //     await axiosInstance.get('/auth/me'); // ou /me
+      //     document.getElementById('loginBackground').style.display = 'none';
+      //     document.getElementById('chatScreen').style.display = 'flex';
+      //     setInitialMessageTime();
+      //   } catch (err) {
+      //     console.log('Usuário não autenticado.');
+      //   }
+      // });
+
+      // document.getElementById('loginBackground').style.display = 'none';
+      //   document.getElementById('chatScreen').style.display = 'flex';
+      document.addEventListener('DOMContentLoaded', () => {
+        // Apenas carrega o horário na mensagem inicial
+        setInitialMessageTime();
       });
+
 
       document.getElementById('userInput').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
