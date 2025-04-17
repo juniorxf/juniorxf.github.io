@@ -469,59 +469,85 @@
           return;
         }
 
+        // try {
+        //   const response = await axiosInstance.post('/auth/login', { username, password });
+
+        //   // if (response.status === 200 && response.data.token) {
+        //   //   document.cookie = `authToken=${response.data.token}; path=/; secure; max-age=86400`;
+
+        //   //   // Muda para a tela de chat
+        //   //   // document.getElementById('loginScreen').style.display = 'none';
+        //   //   document.getElementById('loginBackground').style.display = 'none';
+        //   //   document.getElementById('chatScreen').style.display = 'flex';
+
+        //   //   setInitialMessageTime();
+        //   // } else {
+        //   //   console.log('Login falhou:', response.data);
+        //   //   alert('Usuário ou senha incorretos.');
+        //   // }
+
+        //   // Verifica se a resposta contém os tokens
+        //   if (response.data.accessToken || response.data.refreshToken) {
+        //     // Salva os tokens nos cookies
+        //     document.cookie = `accessToken=${response.data.accessToken}; path=/; secure; max-age=86400`;
+        //     document.cookie = `refreshToken=${response.data.refreshToken}; path=/; secure; max-age=86400`;
+
+        //     // Muda para a tela de chat
+        //     document.getElementById('loginBackground').style.display = 'none';
+        //     document.getElementById('chatScreen').style.display = 'flex';
+
+        //     setInitialMessageTime();
+        //     return;
+        //   }
+        //   console.log('Login falhou:', response.data);
+
+        //   // Se chegou aqui, é porque não tem os tokens
+        //   throw new Error('Tokens não encontrados na resposta');
+
+        // } catch (error) {
+        //   // console.error('Erro no login:', error);
+        //   // alert('Falha na conexão com o servidor.');
+
+        //   console.error('Erro no login:', error);
+
+        //   // Verifica se já temos os tokens nos cookies antes de mostrar o erro
+        //   const hasAccessToken = document.cookie.includes('accessToken');
+        //   const hasRefreshToken = document.cookie.includes('refreshToken');
+
+        //   if (hasAccessToken && hasRefreshToken) {
+        //     // Se temos os tokens, consideramos o login bem-sucedido
+        //     document.getElementById('loginBackground').style.display = 'none';
+        //     document.getElementById('chatScreen').style.display = 'flex';
+        //     setInitialMessageTime();
+        //   } else {
+        //     alert('Usuário ou senha incorretos.');
+        //   }
+        // }
+
         try {
           const response = await axiosInstance.post('/auth/login', { username, password });
 
-          // if (response.status === 200 && response.data.token) {
-          //   document.cookie = `authToken=${response.data.token}; path=/; secure; max-age=86400`;
+          // Verifica se o login foi bem sucedido pela mensagem
+          if (response.data.message === 'Login bem-sucedido.') {
+            // Após login bem sucedido, verifica os tokens nos cookies
+            const hasAccessToken = document.cookie.includes('accessToken');
+            const hasRefreshToken = document.cookie.includes('refreshToken');
 
-          //   // Muda para a tela de chat
-          //   // document.getElementById('loginScreen').style.display = 'none';
-          //   document.getElementById('loginBackground').style.display = 'none';
-          //   document.getElementById('chatScreen').style.display = 'flex';
-
-          //   setInitialMessageTime();
-          // } else {
-          //   console.log('Login falhou:', response.data);
-          //   alert('Usuário ou senha incorretos.');
-          // }
-
-          // Verifica se a resposta contém os tokens
-          if (response.data.accessToken || response.data.refreshToken) {
-            // Salva os tokens nos cookies
-            document.cookie = `accessToken=${response.data.accessToken}; path=/; secure; max-age=86400`;
-            document.cookie = `refreshToken=${response.data.refreshToken}; path=/; secure; max-age=86400`;
-
-            // Muda para a tela de chat
-            document.getElementById('loginBackground').style.display = 'none';
-            document.getElementById('chatScreen').style.display = 'flex';
-
-            setInitialMessageTime();
-            return;
+            if (hasAccessToken && hasRefreshToken) {
+              // Login bem sucedido e tokens presentes
+              document.getElementById('loginBackground').style.display = 'none';
+              document.getElementById('chatScreen').style.display = 'flex';
+              setInitialMessageTime();
+              return;
+            }
           }
-          console.log('Login falhou:', response.data);
 
-          // Se chegou aqui, é porque não tem os tokens
-          throw new Error('Tokens não encontrados na resposta');
+          // Se chegou aqui, algo deu errado
+          throw new Error('Falha na autenticação');
 
         } catch (error) {
-          // console.error('Erro no login:', error);
-          // alert('Falha na conexão com o servidor.');
-
           console.error('Erro no login:', error);
-
-          // Verifica se já temos os tokens nos cookies antes de mostrar o erro
-          const hasAccessToken = document.cookie.includes('accessToken');
-          const hasRefreshToken = document.cookie.includes('refreshToken');
-
-          if (hasAccessToken && hasRefreshToken) {
-            // Se temos os tokens, consideramos o login bem-sucedido
-            document.getElementById('loginBackground').style.display = 'none';
-            document.getElementById('chatScreen').style.display = 'flex';
-            setInitialMessageTime();
-          } else {
-            alert('Usuário ou senha incorretos.');
-          }
+          alert('Usuário ou senha incorretos.');
         }
       }
 
