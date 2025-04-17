@@ -472,34 +472,28 @@
         try {
           const response = await axiosInstance.post('/auth/login', { username, password });
 
-          // Verifica se a resposta foi 200
           if (response.status === 200) {
-            // Salva manualmente os tokens no localStorage se não estiverem
-            const tokenFromCookie = document.cookie
-              .split('; ')
-              .find(row => row.startsWith('accessToken='))?.split('=')[1];
+            const { accessToken, refreshToken } = response.data;
 
-            const tokenFromStorage = localStorage.getItem('accessToken');
+            // Armazena os tokens no localStorage
+            if (accessToken) localStorage.setItem('authToken', accessToken);
+            if (refreshToken) localStorage.setItem('refreshToken', refreshToken);
 
-            if (!tokenFromCookie && tokenFromStorage) {
-              // salva no cookie também para fallback
-              document.cookie = `accessToken=${tokenFromStorage}; path=/; secure; max-age=86400`;
-            }
-
-            // Se token existir em qualquer lugar, prossegue
-            if (tokenFromCookie || tokenFromStorage) {
+            // Verifica se o token está salvo com sucesso
+            const savedToken = localStorage.getItem('authToken');
+            if (savedToken) {
               document.getElementById('loginBackground').style.display = 'none';
               document.getElementById('chatScreen').style.display = 'flex';
               setInitialMessageTime();
             } else {
-              throw new Error('Token não localizado nem no cookie nem no localStorage.');
+              throw new Error('Token não salvo corretamente no localStorage.');
             }
           } else {
             throw new Error(`Resposta inesperada: ${response.status}`);
           }
         } catch (error) {
           console.error('Erro ao fazer login:', error);
-          alert('Não foi possível realizar o login. Tente novamente.');
+          alert('Erro ao fazer login. Verifique suas credenciais.');
         }
       }
 
