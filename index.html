@@ -514,7 +514,7 @@
         const messages = document.getElementById('messages');
 
         if (input.value.trim() !== '') {
-          const messageText = input.value;
+          const rawMessageText = input.value;
 
           // Adiciona a mensagem na interface
           const now = new Date();
@@ -528,21 +528,20 @@
             messageContainer.classList.add('first');
           }
 
-          // const messageText = document.createElement('span');
-          messageText = document.createElement('span');
-          messageText.textContent = input.value;
+          const messageSpan = document.createElement('span');
+          messageSpan.textContent = rawMessageText;
 
           const messageTime = document.createElement('span');
           messageTime.classList.add('message-time');
           messageTime.textContent = `${hours}:${minutes}`;
 
-          messageContainer.appendChild(messageText);
+          messageContainer.appendChild(messageSpan);
           messageContainer.appendChild(messageTime);
           messages.appendChild(messageContainer);
           messages.scrollTop = messages.scrollHeight;
 
           // Envia a mensagem via WhatsApp
-          const sent = await sendWhatsAppMessage(messageText);
+          const sent = await sendWhatsAppMessage(rawMessageText);
           if (!sent) {
             alert("Erro ao enviar mensagem via WhatsApp.");
           }
