@@ -475,14 +475,30 @@
         }
       }
 
+      // async function sendWhatsAppMessage(messageText) {
+      //   const token = document.cookie.split('; ').find(row => row.startsWith('accessToken='))?.split('=')[1];
+      //   console.log("Token:", token);
+      //   console.log("Cookie accessToken:", document.cookie.accessToken);
+      //   if (!token) return false;
+
+      //   axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      //   const payload = {
+      //     sessionName: "corretor",
+      //     contacts: [{ number: "556299957980", nome_inicial: "José", nome_completo: "José Freitas" }],
+      //     message: messageText
+      //   };
+
+      //   try {
+      //     const result = await axiosInstance.post('/api/send-pers-message', payload);
+      //     return result.status === 200;
+      //   } catch (error) {
+      //     console.error("Erro ao enviar mensagem:", error);
+      //     return false;
+      //   }
+      // }
+
       async function sendWhatsAppMessage(messageText) {
-        const token = document.cookie.split('; ').find(row => row.startsWith('accessToken='))?.split('=')[1];
-        console.log("Token:", token);
-        console.log("Cookie accessToken:", document.cookie.accessToken);
-        if (!token) return false;
-
-        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
         const payload = {
           sessionName: "corretor",
           contacts: [{ number: "556299957980", nome_inicial: "José", nome_completo: "José Freitas" }],
@@ -493,7 +509,7 @@
           const result = await axiosInstance.post('/api/send-pers-message', payload);
           return result.status === 200;
         } catch (error) {
-          console.error("Erro ao enviar mensagem:", error);
+          console.error("Erro ao enviar mensagem:", error.response || error.message || error);
           return false;
         }
       }
