@@ -1,0 +1,31 @@
+/* src/components/header.module.css */
+
+/* .header {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+} */
+
+.header {
+  /* position: fixed; */
+  position: absolute;
+  top: 0;
+  left: 0px;
+  right: 0;
+  /* evita calcular com calc() */
+  height: 60px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 18px;
+  font-weight: bold;
+  z-index: 10;
+}

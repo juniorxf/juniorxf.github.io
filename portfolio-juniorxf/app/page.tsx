@@ -15,7 +15,7 @@ export default function Home() {
     }}>
       <h1>Bem-vindo ao portfólio de José Freitas</h1>
       <nav style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        <Link href="/projetos/whatsapp">📱 Projeto WhatsApp</Link>
+        <Link href="/projetos/whatsapp">📱 Projeto WhatsApp2</Link>
         <Link href="/projetos">📁 Ver todos os projetos</Link>
         <Link href="/sobre">👨‍💻 Sobre mim</Link>
       </nav>
