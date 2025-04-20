@@ -1,6 +1,7 @@
 // src/components/WhatsAppPhone/WhatsAppPhone.tsx
 import { useState, useEffect } from 'react';
 import styles from './styles.module.css';
+import { sendWhatsAppMessage } from '../../utils/sendWhatsAppMessage';
 
 export default function WhatsAppPhone() {
   const [messages, setMessages] = useState<string[]>([]);
@@ -14,10 +15,16 @@ export default function WhatsAppPhone() {
     setInitialTime(`${hours}:${minutes}`);
   }, []);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (input.trim()) {
-      setMessages((prev) => [...prev, input.trim()]);
-      setInput('');
+      const success = await sendWhatsAppMessage(input.trim());
+
+      if (success) {
+        setMessages((prev) => [...prev, input.trim()]);
+        setInput('');
+      } else {
+        alert('Erro ao enviar mensagem via WhatsApp.');
+      }
     }
   };
 

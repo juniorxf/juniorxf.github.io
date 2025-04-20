@@ -1,6 +1,7 @@
 // src/components/WhatsAppPhone/LoginPhone.tsx
 import { useState } from 'react';
 import styles from './styles.module.css'
+import axiosInstance from '../../utils/axiosInstance';
 
 interface LoginPhoneProps {
   onSuccess: () => void;
@@ -10,12 +11,24 @@ export default function LoginPhone({ onSuccess }: LoginPhoneProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    if (username.trim() && password.trim()) {
-      // Simula login bem-sucedido
-      onSuccess();
-    } else {
-      alert('Por favor, preencha todos os campos.');
+  const handleLogin = async () => {
+    try {
+      const response = await axiosInstance.post('/auth/login', {
+        username,
+        password,
+      });
+
+      // if (username.trim() && password.trim()) {
+      if (response.status === 200) {
+        // Simula login bem-sucedido
+        onSuccess();
+      }
+      // } else {
+      //   alert('Por favor, preencha todos os campos.');
+      // }
+    } catch (error) {
+      console.error('Erro no login:', error);
+      alert('Login falhou');
     }
   };
 
