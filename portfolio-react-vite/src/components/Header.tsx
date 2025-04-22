@@ -4,7 +4,7 @@ import styles from './header.module.css';
 export default function Header() {
   return (
     <header className={styles.header}>
-      <h1>Meu Portfólio</h1>
+      <h1 className={styles.title}>Meu Portfólio</h1>
     </header>
   );
 }

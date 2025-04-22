@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Sobre from './pages/Sobre'
 import Services from './pages/Services'
 import Projetos from './pages/Projetos'
+// import WhatsApp from './pages/WhatsApp'
 import WhatsApp from './pages/WhatsApp'
 import Config from './pages/Config'
 import './App.css';
@@ -24,8 +25,9 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/expand" element={<Expand />} />
               <Route path="/sobre" element={<Sobre />} />
-              <Route path="/projetos" element={<Projetos />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/projetos" element={<Projetos />} />
+              {/* <Route path="/projetos/whatsapp" element={<WhatsApp />} /> */}
               <Route path="/projetos/whatsapp" element={<WhatsApp />} />
               <Route path="/config" element={<Config />} />
             </Routes>
