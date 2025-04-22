@@ -12,7 +12,8 @@ export default function BootScreen() {
   useEffect(() => {
     const timers = [
       setTimeout(() => setStage("logo"), 1000), // 1s para logo
-      setTimeout(() => setStage("wallpaper"), 2500), // 1.5s para wallpaper
+      setTimeout(() => setStage("wallpaper"), 4000), // 1.5s para wallpaper
+      // setTimeout(() => setStage("wallpaper"), 2500), // 1.5s para wallpaper
     ];
     return () => timers.forEach(clearTimeout);
   }, []);

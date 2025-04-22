@@ -1,3 +1,88 @@
+/* src/components/WhatsAppPhone/HomeScreen.module.css */
+
+.homeScreen {
+  height: 100%;
+  width: 100%;
+  background: url('/wallpaper.jpg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 20px;
+  border-radius: 42px;
+}
+
+.topInfo {
+  /* text-align: center; */
+  text-align: left;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* .time {
+  font-size: 40px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  font-feature-settings: "tnum";
+} */
+
+.time {
+  font-size: 42px;
+  /* font-family: 'SF Pro Display', -apple-system, 'Helvetica Neue', Arial, sans-serif; */
+  font-family: "Hiragino Sans", "ヒラギノ角ゴ ProN W3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 200;
+  /* peso mais fino para parecer com Montserrat Alternates */
+  letter-spacing: -1.8px;
+  /* espaçamento negativo entre as letras */
+  line-height: 1;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  /* suavização da fonte */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.date {
+  font-size: 12px;
+  /* font-size: 16px; */
+  font-family: 'SF Pro Display', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 200;
+  margin-top: 2px;
+  margin-left: 4px;
+}
+
+.appGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  justify-items: center;
+}
+
+.appButton {
+  display: flex;
+  width: 60px;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 11px;
+  /* font-size: 14px; */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 40px;
+  margin-bottom: 4px;
+  color: #ffffff;
+  border-radius: 12px;
+}
+
+/* Styles.module */
+
 /* src/components/WhatsAppPhone/styles.module.css */
 .phoneContainer {
   position: relative;
@@ -11,24 +96,25 @@
 }
 
 .whatsappScreen {
-  background: url('/background.jpeg');
-  background-repeat: repeat;
-  background-size: contain;
-  height: calc(100% + 95px);
-  width: calc(100% - 9px);
+  /* background: url('/background.jpeg'); */
+  /* background-repeat: repeat; */
+  /* background-size: contain; */
+  height: calc(100% + 116px);
+  width: calc(100% - 27px);
   border-radius: 42px;
   display: flex;
   flex-direction: column;
   padding: 10px;
-  margin: -58px -5px -5px -5px;
+  margin: -68px -5px -5px -16px;
+  /* FIXME ajustar um efeito: */
+  transition: opacity 0.3s ease;
 }
 
-.messages {
+/* .messages {
   font-size: 14px;
   flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  /* Impede rolagem horizontal */
   display: flex;
   flex-direction: column;
   gap: 1px;
@@ -250,7 +336,6 @@
   opacity: 0.8;
 }
 
-/* .navButton i.fa-square { */
 .navButton :global(i.fa-square) {
   font-size: 17px;
 }
@@ -318,4 +403,4 @@
 
 .loginScreen button:hover {
   background: #128C7E;
-}
+} */

@@ -1,19 +1,39 @@
 // src/components/WhatsAppPhone/WhatsAppPhone.tsx
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import { sendWhatsAppMessage } from '../../utils/sendWhatsAppMessage';
 
 export default function WhatsAppPhone() {
+  const navigate = useNavigate();
   const [messages, setMessages] = useState<string[]>([]);
   const [input, setInput] = useState('');
   const [initialTime, setInitialTime] = useState('');
 
   useEffect(() => {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    setInitialTime(`${hours}:${minutes}`);
+    const updateTime = () => {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      setInitialTime(`${hours}:${minutes}`);
+    };
+
+    updateTime(); // atualiza imediatamente
+    const interval = setInterval(updateTime, 60000); // atualiza a cada minuto
+
+    return () => clearInterval(interval); // limpa o intervalo ao desmontar
   }, []);
+
+  useEffect(() => {
+    const savedMessages = localStorage.getItem('whatsapp-messages');
+    if (savedMessages) {
+      setMessages(JSON.parse(savedMessages));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('whatsapp-messages', JSON.stringify(messages));
+  }, [messages]);
 
   const handleSend = async () => {
     if (input.trim()) {
@@ -91,7 +111,13 @@ export default function WhatsAppPhone() {
       <div className={styles.androidNavigation}>
         <div className={styles.navButton}><i className="fas fa-square"></i></div>
         <div className={styles.navButton}><img src="/circle.svg" className={styles.navIcon} /></div>
-        <div className={styles.navButton}><i className="fas fa-caret-left"></i></div>
+        {/* <div className={styles.navButton}><i className="fas fa-caret-left"></i></div> */}
+        <div
+          className={styles.navButton}
+          onClick={() => navigate('/projetos/whatsapp/lock')}
+        >
+          <i className="fas fa-caret-left"></i>
+        </div>
       </div>
     </div>
   );
