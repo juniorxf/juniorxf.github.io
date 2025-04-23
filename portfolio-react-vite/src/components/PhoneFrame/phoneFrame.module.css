@@ -1,0 +1,83 @@
+/* src/components/phoneFrame/phoneFrame.module.css */
+
+.phoneContainer {
+  position: relative;
+  width: 300px;
+  height: 550px;
+  background: url('/phone_037.png') no-repeat center center;
+  background-size: contain;
+  padding: 65px 15px;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+  margin: 0 auto;
+}
+
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.systemIcons {
+  display: flex;
+  gap: 5px;
+}
+
+.androidNavigation {
+  background-color: #ffffff;
+  position: absolute;
+  bottom: 7px;
+  left: calc(50% + 0.6px);
+  transform: translateX(-50%);
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  width: calc(100% - 19.5px);
+  height: 40px;
+  justify-content: center;
+  margin-left: .5px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.navButton {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.navButton:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.navIcon {
+  width: 22px;
+  height: 22px;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.navButton:hover .navIcon {
+  opacity: 0.8;
+}
+
+/* .navButton i.fa-square { */
+.navButton :global(i.fa-square) {
+  font-size: 17px;
+}
+
+
+.navButton :global(i.fa-caret-left) {
+  font-size: 25px;
+}
+
+.time {
+  font-size: 12px;
+}
