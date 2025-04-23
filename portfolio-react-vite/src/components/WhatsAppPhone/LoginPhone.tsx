@@ -130,16 +130,17 @@
 import { useState } from 'react';
 import axiosInstance from '../../utils/axiosInstance';
 import './LoginPhone.css';
-// import StatusBar from '../PhoneFrame/StatusBar';
-// import NavigationBar from '../PhoneFrame/NavigationBar';
+import StatusBar from '../PhoneFrame/StatusBar';
+import NavigationBar from '../PhoneFrame/NavigationBar';
+import { BsThreeDots } from "react-icons/bs";
 
 interface LoginPhoneProps {
   onSuccess: () => void;
   onBack?: () => void;
 }
 
-export default function LoginPhone({ onSuccess }: LoginPhoneProps) {
-  // export default function LoginPhone({ onSuccess, onBack }: LoginPhoneProps) {
+// export default function LoginPhone({ onSuccess }: LoginPhoneProps) {
+export default function LoginPhone({ onSuccess, onBack }: LoginPhoneProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -162,6 +163,16 @@ export default function LoginPhone({ onSuccess }: LoginPhoneProps) {
   return (
     <div className="whatsappScreen">
       {/* <StatusBar /> */}
+      <StatusBar
+        theme="dark"
+        className="loginStatusBar" // <--- aqui está o segredo
+        leftSlot={
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+            <i className="fas fa-location-arrow" />
+            <BsThreeDots />
+          </div>
+        }
+      />
 
       <div className="loginBackground">
         <div className="loginScreen">
@@ -183,6 +194,7 @@ export default function LoginPhone({ onSuccess }: LoginPhoneProps) {
       </div>
 
       {/* <NavigationBar onBack={onBack} /> */}
+      <NavigationBar theme="dark" onBack={onBack} className="loginNavigationBar" />
     </div>
   );
 }
