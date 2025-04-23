@@ -1,0 +1,70 @@
+/* src/components/WhatsAppPhone/LoginPhone.css */
+
+.whatsappScreen {
+  /* background: url('/background.jpeg'); */
+  /* background-repeat: repeat; */
+  /* background-size: contain; */
+  height: calc(100% + 95px);
+  width: calc(100% - 9px);
+  border-radius: 42px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: -58px -5px -58px -5px;
+}
+
+.loginBackground {
+  background-color: rgba(54, 145, 237, 0.95);
+  height: calc(100% + 95px);
+  width: calc(100% + 2px);
+  border-radius: 42px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: -10px 0px -11px -11px;
+}
+
+.loginScreen {
+  padding: 20px;
+  text-align: center;
+  margin-top: 160px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.loginScreen h3 {
+  color: #075E54;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.loginScreen input {
+  width: 90%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.loginScreen input:focus {
+  border-color: #25D366;
+  outline: none;
+}
+
+.loginScreen button {
+  padding: 12px 30px;
+  background: #25D366;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.loginScreen button:hover {
+  background: #128C7E;
+}

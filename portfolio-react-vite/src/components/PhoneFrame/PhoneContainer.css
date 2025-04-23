@@ -1,0 +1,25 @@
+/* src/components/PhoneFrame/PhoneContainer.css */
+
+.phoneContainer {
+  position: relative;
+  width: 300px;
+  height: 550px;
+  background: url('/phone_037.png') no-repeat center center;
+  background-size: contain;
+  padding: 65px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+}
+
+.phoneContainer.light {
+  color: #000;
+  /* se necessário, outros ajustes para modo claro */
+}
+
+.phoneContainer.dark {
+  color: #fff;
+  background-color: transparent;
+  /* ou rgba(0,0,0,0.1) se quiser um efeito */
+}

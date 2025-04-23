@@ -1,7 +1,7 @@
 // src/components/WhatsAppPhone/BootScreen.tsx
 import { useEffect, useState } from 'react';
 import { SiXiaomi } from 'react-icons/si';
-import PhoneContainer from '../PhoneFrame/PhoneContainer';
+// import PhoneContainer from '../PhoneFrame/PhoneContainer';
 // import { PiDotsThree } from "react-icons/pi";
 import './BootScreen.css';
 
@@ -17,18 +17,18 @@ export default function BootScreen() {
   }, []);
 
   return (
-    <PhoneContainer>
-      <div className="boot-wrapper">
-        {stage === 'boot' && <div className="boot-screen" />} {/* tela preta */}
-        {stage === 'logo' && (
-          <div className="logo-screen">
-            <SiXiaomi className="logo-icon" />
-            <img src="/android.svg" className="android" />
-            {/* <PiDotsThree /> */}
-          </div>
-        )}
-        {/* Se for 'done', o redirecionamento ocorre pelo componente pai */}
-      </div>
-    </PhoneContainer>
+    // <PhoneContainer>
+    <div className="boot-wrapper">
+      {stage === 'boot' && <div className="boot-screen" />} {/* tela preta */}
+      {stage === 'logo' && (
+        <div className="logo-screen">
+          <SiXiaomi className="logo-icon" />
+          <img src="/android.svg" className="android" />
+          {/* <PiDotsThree /> */}
+        </div>
+      )}
+      {/* Se for 'done', o redirecionamento ocorre pelo componente pai */}
+    </div>
+    // </PhoneContainer>
   );
 }

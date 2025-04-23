@@ -1,0 +1,35 @@
+/* src/components/PhoneFrame/StatusBar.css */
+
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  height: 20px;
+  margin-top: -25px;
+}
+
+.statusBar.light {
+  background-color: transparent;
+  /* background-color: white; */
+  color: white;
+  /* color: black; */
+}
+
+.statusBar.dark {
+  background-color: transparent;
+  color: black;
+  /* text-shadow: 0 0 2px black; */
+}
+
+.statusTime {
+  font-size: 12px;
+}
+
+.systemIcons {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+}

@@ -1,0 +1,201 @@
+/* src/components/WhatsAppPhone/WhatsAppPhone.css */
+
+.whatsappScreen {
+  background: url('/background.jpeg');
+  background-repeat: repeat;
+  background-size: contain;
+  height: calc(100% + 95px);
+  width: calc(100% - 9px);
+  border-radius: 42px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: -58px -5px -77px -5px;
+}
+
+.whatsappHeader {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 25px 10px 10px 10px;
+  margin: -10px -10px 10px -10px;
+  border-top-left-radius: 42px;
+  border-top-right-radius: 42px;
+}
+
+.chatHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contactInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactName {
+  font-weight: 400;
+}
+
+.onlineStatus {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.chatActions {
+  display: flex;
+  gap: 15px;
+  font-size: 18px;
+  align-items: center;
+}
+
+.actionIcon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.videoIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.actionIcon:hover {
+  opacity: 1;
+}
+
+.messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.message {
+  border-radius: 7px;
+  padding: 8px 35px 8px 8px;
+  margin-bottom: 1px;
+  max-width: 80%;
+  width: fit-content;
+  position: relative;
+}
+
+.message.sent {
+  background: #d8fdd2;
+  align-self: flex-end;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.message.received {
+  background: #ffffff;
+  align-self: flex-start;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.message.sent.first::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid #d8fdd2;
+  border-top: 8px solid transparent;
+}
+
+.message.received.first::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-right: 8px solid #ffffff;
+  border-top: 8px solid transparent;
+}
+
+.message span {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  display: block;
+  font-size: 14px;
+}
+
+.messageTime {
+  font-size: 10px !important;
+  color: #667781;
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  line-height: 1;
+}
+
+.inputArea {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 35px;
+}
+
+.inputArea input {
+  flex-grow: 1;
+  border-radius: 20px;
+  border: none;
+  padding: 10px;
+  outline: none;
+  font-size: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.inputArea button {
+  border: none;
+  border-radius: 50%;
+  color: white;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.sendIcon {
+  width: 55px;
+  height: 55px;
+}
+
+/* Estilos específicos para a navigationBar do WhatsApp */
+.navigationBar.whatsappNavigationBar {
+  margin-top: 10px;
+  background-color: white;
+  border-bottom-left-radius: 42px;
+  border-bottom-right-radius: 42px;
+  /* border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px; */
+  /* padding-bottom: 10px; */
+  padding: 0px 10px 0px 10px;
+  margin: -10px -6px -58px -5px;
+}

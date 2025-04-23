@@ -14,7 +14,7 @@
   width: calc(100% - 7px);
   border-radius: 42px;
   padding: 10px;
-  margin: -58px -5px -5px -6px;
+  margin: -58px -5px -58px -6px;
 }
 
 .lock-status-bar {

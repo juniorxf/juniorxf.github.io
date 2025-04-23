@@ -1,20 +1,6 @@
-/* src/components/WhatsAppPhone/HomeScreen.module.css */
-
-/* SUGERIDO: */
-
 /* src/components/WhatsAppPhone/HomeScreen.css */
 
 .home-screen {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  background: url('/wallpaper.jpg') no-repeat center center;
-  background-size: cover;
-  padding: 16px; */
-
-
   position: relative;
   z-index: 1;
   height: calc(100% + 56px);
@@ -27,15 +13,12 @@
   padding: 30px 18px;
   border-radius: 42px;
   pointer-events: auto;
-  margin: -58px -5px -5px -6px;
-  /* margin: 0 auto; */
+  margin: -58px -5px -58px -6px;
 }
 
-/* FIXME */
-.home-screen .status-bar {
+/* .home-screen .status-bar {
   color: #ffffff;
-  /* ou qualquer cor que desejar */
-}
+} */
 
 .app-grid {
   display: grid;
@@ -74,47 +57,8 @@
   overflow-wrap: break-word;
 }
 
-/* ANTIGOS: */
-/* .wrapper {
-  position: relative;
-  width: 300px;
-  height: 550px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.screenContent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  padding: 65px 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.homeScreen {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  width: 100%;
-  background: url('/wallpaper.jpg') no-repeat center center;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 40px 20px;
-  border-radius: 42px;
-  pointer-events: auto;
-  margin: 0 auto;
-}
-
-.topInfo {
+.top-info {
+  margin-top: 20px;
   text-align: left;
   color: white;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
@@ -122,155 +66,29 @@
 
 .time {
   font-size: 42px;
+  /* font-family: 'SF Pro Display', -apple-system, 'Helvetica Neue', Arial, sans-serif; */
   font-family: "Hiragino Sans", "ヒラギノ角ゴ ProN W3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 200;
+  /* peso mais fino para parecer com Montserrat Alternates */
   letter-spacing: -1.8px;
+  /* espaçamento negativo entre as letras */
   line-height: 1;
   font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums;
+  /* suavização da fonte */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .date {
   font-size: 12px;
+  /* font-size: 16px; */
   font-family: 'SF Pro Display', -apple-system, 'Helvetica Neue', Arial, sans-serif;
   font-weight: 200;
   margin-top: 2px;
   margin-left: 4px;
 }
 
-.appGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  justify-items: center;
+.navigationBar.homeNavigationBar {
+  margin-bottom: -30px;
 }
-
-.appButton {
-  display: flex;
-  width: 60px;
-  flex-direction: column;
-  align-items: center;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 11px;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-}
-
-.icon {
-  font-size: 40px;
-  margin-bottom: 4px;
-  color: #ffffff;
-  border-radius: 12px;
-}
-
-.phone {
-  position: relative;
-  width: 300px;
-  height: 550px;
-  background: url('/phone_037.png') no-repeat center center;
-  background-size: contain;
-  padding: 65px 15px;
-  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
-  margin: 0 auto;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.whatsappScreen {
-  position: relative;
-  z-index: 1;
-  height: calc(100% + 116px);
-  width: calc(100% - 27px);
-  border-radius: 42px;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  margin: -68px -5px -5px -16px;
-  transition: opacity 0.3s ease;
-  pointer-events: auto;
-}
-
-
-.sendIcon {
-  width: 55px;
-  height: 55px;
-}
-
-.whatsappHeader {
-  color: #fff;
-  padding: 10px;
-}
-
-.statusBar {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.systemIcons {
-  display: flex;
-  gap: 5px;
-}
-
-
-.androidNavigation {
-  background-color: #ffffff;
-  position: absolute;
-  bottom: 7px;
-  left: calc(50% + 0.6px);
-  transform: translateX(-50%);
-  display: flex;
-  gap: 40px;
-  align-items: center;
-  width: calc(100% - 19.5px);
-  height: 40px;
-  justify-content: center;
-  margin-left: .5px;
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
-}
-
-.navButton {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.navButton:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-
-.navIcon {
-  width: 22px;
-  height: 22px;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
-}
-
-.navButton:hover .navIcon {
-  opacity: 0.8;
-}
-
-.navButton :global(i.fa-square) {
-  font-size: 17px;
-}
-
-
-.navButton :global(i.fa-caret-left) {
-  font-size: 25px;
-}
-
-.timeHeader {
-  font-size: 12px;
-} */

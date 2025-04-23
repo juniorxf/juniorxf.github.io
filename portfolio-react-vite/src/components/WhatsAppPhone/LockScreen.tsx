@@ -69,7 +69,7 @@
 // src/components/WhatsAppPhone/LockScreen.tsx
 import './LockScreen.css';
 import { useEffect, useState } from 'react';
-import PhoneContainer from '../PhoneFrame/PhoneContainer';
+// import PhoneContainer from '../PhoneFrame/PhoneContainer';
 // import StatusBar from '../PhoneFrame/StatusBar';
 // import NavigationBar from '../PhoneFrame/NavigationBar';
 import { SlArrowUp } from "react-icons/sl";
@@ -106,20 +106,20 @@ export default function LockScreen({ onUnlock }: LockScreenProps) {
   }, []);
 
   return (
-    <PhoneContainer>
-      <div className="lock-screen" onClick={onUnlock}>
-        {/* <StatusBar /> */}
-        <div className="lock-status-bar">
-          <div className="lock-time">{time}</div>
-          <div className="lock-date">{date}</div>
-        </div>
-        <div className="lock-app-icons">
-          <div className="lock-icon">
-            <SlArrowUp className="arrow" />
-          </div>
-        </div>
-        {/* <NavigationBar onBack={() => { }} /> */}
+    // <PhoneContainer>
+    <div className="lock-screen" onClick={onUnlock}>
+      {/* <StatusBar /> */}
+      <div className="lock-status-bar">
+        <div className="lock-time">{time}</div>
+        <div className="lock-date">{date}</div>
       </div>
-    </PhoneContainer>
+      <div className="lock-app-icons">
+        <div className="lock-icon">
+          <SlArrowUp className="arrow" />
+        </div>
+      </div>
+      {/* <NavigationBar onBack={() => { }} /> */}
+    </div>
+    // </PhoneContainer>
   );
 }
