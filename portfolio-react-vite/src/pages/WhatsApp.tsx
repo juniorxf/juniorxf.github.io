@@ -107,7 +107,8 @@ export default function WhatsApp() {
       } catch {
         setStage(ScreenStage.Login);
       }
-    }, 1500);
+      // }, 1500);
+    }, 800);
   };
 
   const handleLoginSuccess = () => {
@@ -117,15 +118,16 @@ export default function WhatsApp() {
   const handleBackToHome = () => setStage(ScreenStage.Home);
 
   return (
-    <div className="screen-wrapper">
-      <PhoneContainer>
-        {stage === ScreenStage.Boot && <BootScreen />}
-        {stage === ScreenStage.Lock && <LockScreen onUnlock={handleUnlock} />}
-        {stage === ScreenStage.Home && <HomeScreen onOpenWhatsApp={handleOpenWhatsApp} />}
-        {stage === ScreenStage.WhatsAppSplash && <WhatsAppSplash onBack={handleBackToHome} />}
-        {stage === ScreenStage.Login && <LoginPhone onSuccess={handleLoginSuccess} onBack={handleBackToHome} />}
-        {stage === ScreenStage.WhatsApp && <WhatsAppPhone onBack={handleBackToHome} />}
-      </PhoneContainer>
-    </div>
+    // <div className="screen-wrapper">
+    <PhoneContainer>
+      {stage === ScreenStage.Boot && <BootScreen />}
+      {stage === ScreenStage.Lock && <LockScreen onUnlock={handleUnlock} />}
+      {stage === ScreenStage.Home && <HomeScreen onOpenWhatsApp={handleOpenWhatsApp} />}
+      {stage === ScreenStage.WhatsAppSplash && <WhatsAppSplash />}
+      {/* {stage === ScreenStage.WhatsAppSplash && <WhatsAppSplash onBack={handleBackToHome} />} */}
+      {stage === ScreenStage.Login && <LoginPhone onSuccess={handleLoginSuccess} onBack={handleBackToHome} />}
+      {stage === ScreenStage.WhatsApp && <WhatsAppPhone onBack={handleBackToHome} />}
+    </PhoneContainer>
+    // </div>
   );
 }

@@ -30,6 +30,10 @@ body,
   /* centraliza horizontalmente */
   align-items: center;
   /* centraliza verticalmente */
-  height: calc(100vh - 60px);
+  /* height: calc(100vh - 60px); */
   /* 60px = altura do header */
+  min-height: 0;
+  /* importante para evitar overflow */
+  overflow: hidden;
+  /* previne rolagem desnecessária */
 }
