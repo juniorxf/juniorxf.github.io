@@ -2,7 +2,6 @@
 
 .home-screen {
   position: relative;
-  z-index: 1;
   height: calc(100% + 56px);
   width: calc(100% - 23px);
   background: url('/wallpaper.jpg') no-repeat center center;
@@ -14,6 +13,14 @@
   border-radius: 42px;
   pointer-events: auto;
   margin: -58px -5px -58px -6px;
+  pointer-events: auto;
+  /* isolation: isolate; */
+  z-index: -1;
+}
+
+.home-screen * {
+  position: relative;
+  z-index: -1;
 }
 
 /* .home-screen .status-bar {
@@ -28,6 +35,8 @@
   flex-grow: 1;
   align-items: center;
   justify-items: center;
+  /* pointer-events: auto;
+  z-index: 0; */
 }
 
 .app-icon {

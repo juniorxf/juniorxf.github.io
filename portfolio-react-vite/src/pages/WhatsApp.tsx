@@ -117,13 +117,15 @@ export default function WhatsApp() {
   const handleBackToHome = () => setStage(ScreenStage.Home);
 
   return (
-    <PhoneContainer>
-      {stage === ScreenStage.Boot && <BootScreen />}
-      {stage === ScreenStage.Lock && <LockScreen onUnlock={handleUnlock} />}
-      {stage === ScreenStage.Home && <HomeScreen onOpenWhatsApp={handleOpenWhatsApp} />}
-      {stage === ScreenStage.WhatsAppSplash && <WhatsAppSplash onBack={handleBackToHome} />}
-      {stage === ScreenStage.Login && <LoginPhone onSuccess={handleLoginSuccess} onBack={handleBackToHome} />}
-      {stage === ScreenStage.WhatsApp && <WhatsAppPhone onBack={handleBackToHome} />}
-    </PhoneContainer>
+    <div className="screen-wrapper">
+      <PhoneContainer>
+        {stage === ScreenStage.Boot && <BootScreen />}
+        {stage === ScreenStage.Lock && <LockScreen onUnlock={handleUnlock} />}
+        {stage === ScreenStage.Home && <HomeScreen onOpenWhatsApp={handleOpenWhatsApp} />}
+        {stage === ScreenStage.WhatsAppSplash && <WhatsAppSplash onBack={handleBackToHome} />}
+        {stage === ScreenStage.Login && <LoginPhone onSuccess={handleLoginSuccess} onBack={handleBackToHome} />}
+        {stage === ScreenStage.WhatsApp && <WhatsAppPhone onBack={handleBackToHome} />}
+      </PhoneContainer>
+    </div>
   );
 }

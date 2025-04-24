@@ -1,16 +1,54 @@
 /* src/components/PhoneFrame/PhoneContainer.css */
 
+.screen-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* garante altura total da viewport */
+  width: 100vw;
+  /* garante largura total da viewport */
+  overflow: hidden;
+  background-color: #f9f9f9;
+  /* se quiser definir cor de fundo da tela */
+  position: relative;
+}
+
+.phone-wrapper {
+  position: relative;
+  width: 300px;
+  height: 618px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phone-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 292px;
+  height: 531px;
+  z-index: 1;
+  padding: 43px 0px 0px 4px;
+}
+
 .phoneContainer {
   position: relative;
   width: 300px;
-  height: 550px;
+  height: 618px;
   background: url('/phone_037.png') no-repeat center center;
   background-size: contain;
-  padding: 65px 15px;
+  padding: 70px 30px 70px 30px;
+  margin: -80px -10px -80px -10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+  z-index: 2;
+  pointer-events: none;
+  top: 0;
+  left: 0;
 }
 
 .phoneContainer.light {

@@ -1,11 +1,5 @@
-// // src/components/PhoneFrame/PhoneContainer.tsx
-// import styles from './phoneFrame.module.css';
-
-// export default function PhoneContainer({ children }: { children: React.ReactNode }) {
-//   return <div className={styles.phoneContainer}>{children}</div>;
-// }
-
 // src/components/PhoneFrame/PhoneContainer.tsx
+
 import './PhoneContainer.css';
 
 interface PhoneContainerProps {
@@ -15,8 +9,13 @@ interface PhoneContainerProps {
 
 export default function PhoneContainer({ children, theme = 'light' }: PhoneContainerProps) {
   return (
-    <div className={`phoneContainer ${theme}`}>
-      {children}
+    <div className="screen-wrapper">
+      <div className="phone-wrapper">
+        <div className="phone-content">
+          {children}
+        </div>
+        <div className={`phoneContainer ${theme}`} />
+      </div>
     </div>
   );
 }
