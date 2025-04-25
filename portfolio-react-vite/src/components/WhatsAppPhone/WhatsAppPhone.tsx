@@ -4,19 +4,19 @@ import { useState, useEffect } from 'react';
 import { sendWhatsAppMessage } from '../../utils/sendWhatsAppMessage';
 import StatusBar from '../PhoneFrame/StatusBar';
 import NavigationBar from '../PhoneFrame/NavigationBar';
-import WhatsAppSplash from './WhatsAppSplash';
+// import WhatsAppSplash from './WhatsAppSplash';
 import './WhatsAppPhone.css';
 
 export default function WhatsAppPhone({ onBack }: { onBack: () => void }) {
-  const [showSplash, setShowSplash] = useState(true);
+  // const [showSplash, setShowSplash] = useState(true);
   const [messages, setMessages] = useState<string[]>([]);
   const [input, setInput] = useState('');
   const [initialTime, setInitialTime] = useState('');
 
-  useEffect(() => {
-    const timeout = setTimeout(() => setShowSplash(false), 2000);
-    return () => clearTimeout(timeout);
-  }, []);
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => setShowSplash(false), 2000);
+  //   return () => clearTimeout(timeout);
+  // }, []);
 
   useEffect(() => {
     const updateTime = () => {
@@ -54,7 +54,7 @@ export default function WhatsAppPhone({ onBack }: { onBack: () => void }) {
     }
   };
 
-  if (showSplash) return <WhatsAppSplash />;
+  // if (showSplash) return <WhatsAppSplash />;
 
   return (
     <>
