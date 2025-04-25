@@ -1,6 +1,6 @@
 /* src/components/PhoneFrame/NavigationBar.css */
 
-.navigationBar {
+/* .navigationBar {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,6 +8,23 @@
   padding: 0 16px;
   gap: 45px;
   margin-bottom: -20px;
+} */
+
+.navigationBar {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 30px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  padding: 0 16px;
+  gap: 40px;
+  border-bottom-left-radius: 42px;
+  border-bottom-right-radius: 42px;
+  pointer-events: auto;
 }
 
 .navigationBar.light {

@@ -60,7 +60,16 @@ export default function WhatsAppPhone({ onBack }: { onBack: () => void }) {
     <>
       <div className="whatsappScreen">
         <div className="whatsappHeader">
-          <StatusBar theme='dark' />
+          <StatusBar
+            theme="dark"
+            // leftSlot={
+            //   <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+            //     <i className="fas fa-location-arrow" />
+            //     <BsThreeDots />
+            //   </div>
+            // }
+            className="whatsStatusBar"
+          />
           <div className="chatHeader">
             <div className="contactInfo">
               <div className="avatar">
