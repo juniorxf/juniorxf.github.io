@@ -7,9 +7,15 @@ import NavigationBar from '../PhoneFrame/NavigationBar';
 import './WhatsAppPhone.css';
 
 export default function WhatsAppPhone({ onBack }: { onBack: () => void }) {
-  const [messages, setMessages] = useState<string[]>([]);
+  // const [messages, setMessages] = useState<string[]>([]);
   const [input, setInput] = useState('');
   const [initialTime, setInitialTime] = useState('');
+  interface Message {
+    text: string;
+    time: string;
+  }
+
+  const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
     const updateTime = () => {
@@ -35,11 +41,27 @@ export default function WhatsAppPhone({ onBack }: { onBack: () => void }) {
     localStorage.setItem('whatsapp-messages', JSON.stringify(messages));
   }, [messages]);
 
+  // const handleSend = async () => {
+  //   if (input.trim()) {
+  //     const success = await sendWhatsAppMessage(input.trim());
+  //     if (success) {
+  //       setMessages((prev) => [...prev, input.trim()]);
+  //       setInput('');
+  //     } else {
+  //       alert('Erro ao enviar mensagem via WhatsApp.\nNecessário fazer login.');
+  //     }
+  //   }
+  // };
+
   const handleSend = async () => {
     if (input.trim()) {
       const success = await sendWhatsAppMessage(input.trim());
+
       if (success) {
-        setMessages((prev) => [...prev, input.trim()]);
+        const now = new Date();
+        const time = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+
+        setMessages((prev) => [...prev, { text: input.trim(), time }]);
         setInput('');
       } else {
         alert('Erro ao enviar mensagem via WhatsApp.\nNecessário fazer login.');
@@ -79,7 +101,7 @@ export default function WhatsAppPhone({ onBack }: { onBack: () => void }) {
             <span className="messageTime">{initialTime}</span>
           </div>
 
-          {messages.map((msg, index) => (
+          {/* {messages.map((msg, index) => (
             <div
               key={index}
               className={`message sent ${index === 0 ? 'first' : ''}`}
@@ -87,7 +109,18 @@ export default function WhatsAppPhone({ onBack }: { onBack: () => void }) {
               <span>{msg}</span>
               <span className="messageTime">{initialTime}</span>
             </div>
+          ))} */}
+
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              className={`message sent ${index === 0 ? 'first' : ''}`}
+            >
+              <span>{msg.text}</span>
+              <span className="messageTime">{msg.time}</span>
+            </div>
           ))}
+
         </div>
 
         <div className="inputArea">
