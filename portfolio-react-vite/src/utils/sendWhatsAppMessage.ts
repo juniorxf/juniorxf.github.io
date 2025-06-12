@@ -13,7 +13,8 @@ export async function sendWhatsAppMessage(messageText: string): Promise<boolean>
   try {
     // const result = await axiosInstance.post('/api/send-pers-message', payload);
     const result = await axiosInstance.post('/api/whats-evo/send-text', payload);
-    return result.status === 200;
+    // return result.status === 200;
+    return result.status === 201;
   } catch (error) {
     console.error("Erro ao enviar mensagem:", error);
     return false;
